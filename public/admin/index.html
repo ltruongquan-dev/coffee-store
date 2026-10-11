@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Trị Thực Đơn - Cáo Ngọt</title>
+  <meta name="description" content="Khu vực quản trị thực đơn Cáo Ngọt: thêm món, cập nhật bestseller, ghi nhận người cập nhật, thời gian cập nhật vào Database.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/shared/common.css">
+  <link rel="stylesheet" href="/shared/navbar.css">
+  <link rel="stylesheet" href="/shared/footer.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header">
+    <div class="nav-container container">
+      <!-- 1. Logo (Click trở về trang chủ) -->
+      <a href="/home/" class="brand-logo" title="Cáo Ngọt - Về Trang Chủ">
+        <img src="/assets/images/logo.png" alt="Cáo Ngọt" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-title">CÁO NGỌT</span>
+        </div>
+      </a>
+
+      <!-- 2. Navbar Links -->
+      <ul class="nav-menu">
+        <li><a href="/coffee/" class="nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="nav-link">Thực Đơn</a></li>
+        <li><a href="/about/" class="nav-link">Về Chúng Tôi</a></li>
+        <li><a href="/contact/" class="nav-link">Liên Hệ</a></li>
+      </ul>
+
+      <!-- 3. Giỏ Hàng và User -->
+      <div class="nav-actions">
+        <a href="/cart/" class="nav-text-btn" title="Giỏ hàng">
+          Giỏ hàng
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+
+        <div class="user-menu-wrapper">
+          <button id="user-menu-btn" class="nav-text-btn" title="Tài khoản">
+            Tài khoản
+          </button>
+          <div id="user-dropdown" class="user-dropdown"></div>
+        </div>
+
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Menu di động">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div>
+      <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+        <img src="/assets/images/logo.png" alt="Cáo Ngọt" style="height: 38px; width: auto; object-fit: contain;">
+        <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #000000;">CÁO NGỌT</span>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="/coffee/" class="mobile-nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="mobile-nav-link">Thực Đơn</a></li>
+        <li><a href="/about/" class="mobile-nav-link">Về Chúng Tôi</a></li>
+        <li><a href="/contact/" class="mobile-nav-link">Liên Hệ</a></li>
+        <li><a href="/cart/" class="mobile-nav-link">Giỏ Hàng Của Bạn</a></li>
+      </ul>
+    </div>
+    <div id="mobile-drawer-auth" class="mobile-drawer-auth"></div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="admin-page-wrapper">
+    <div class="container">
+      <!-- Admin Page Header -->
+      <div class="admin-header">
+        <div class="admin-title-group">
+          <h1>Quản Trị Thực Đơn Hệ Thống</h1>
+          <p>Thêm món mới, cập nhật thông tin và lưu lịch sử chỉnh sửa vào Database</p>
+        </div>
+        <div>
+          <a href="/menu/" class="btn btn-outline btn-sm">Xem Thực Đơn</a>
+        </div>
+      </div>
+
+      <!-- Thống kê nhanh (Stats) -->
+      <div class="admin-stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" id="stat-total-items">0</div>
+          <div class="stat-label">Tổng Số Món</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-bestsellers">0</div>
+          <div class="stat-label">Món Best seller</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-likes">0</div>
+          <div class="stat-label">Tổng Lượt Thích</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="font-size: 1.2rem;">Đang Kết Nối</div>
+          <div class="stat-label">Cơ Sở Dữ Liệu MongoDB</div>
+        </div>
+      </div>
+
+      <!-- 2 Cột: Form Thêm Món & Bảng Quản Lý Thực Đơn -->
+      <div class="admin-content-grid">
+        <!-- Cột 1: Form Thêm / Chỉnh Sửa Món -->
+        <div class="admin-card">
+          <h2 class="admin-card-title">
+            <span id="form-title-text">Thêm Món Mới</span>
+            <button id="btn-cancel-edit" type="button" class="btn btn-outline btn-sm" style="display: none; padding: 2px 8px; font-size: 0.75rem; float: right;">Huỷ</button>
+          </h2>
+
+          <form id="admin-menu-form">
+            <!-- 1. Tên người quản trị thực hiện -->
+            <div class="form-group">
+              <label class="form-label" for="form-admin-name">Người thực hiện (Admin Name)</label>
+              <input type="text" id="form-admin-name" class="form-input" value="Admin Quản Trị" placeholder="Nhập tên người cập nhật" required>
+              <small style="color: #000000; font-size: 0.75rem;">Lưu vào trường updatedBy trong Database</small>
+            </div>
+
+            <!-- 2. Tên món -->
+            <div class="form-group">
+              <label class="form-label" for="form-item-name">Tên Món Ăn / Thức Uống</label>
+              <input type="text" id="form-item-name" class="form-input" placeholder="Ví dụ: Cà Phê Muối Hoàng Gia" required>
+            </div>
+
+            <!-- 3. Danh mục (4 nhóm: cà phê, espresso, phindi, trà sữa) -->
+            <div class="form-group">
+              <label class="form-label" for="form-item-category">Danh Mục Thực Đơn</label>
+              <select id="form-item-category" class="form-select" required>
+                <option value="cà phê">Cà Phê</option>
+                <option value="espresso">Espresso</option>
+                <option value="phindi">Phindi</option>
+                <option value="trà sữa">Trà Sữa</option>
+              </select>
+            </div>
+
+            <!-- 4. Giá món (VND) -->
+            <div class="form-group">
+              <label class="form-label" for="form-item-price">Giá Món (VNĐ)</label>
+              <input type="number" id="form-item-price" class="form-input" placeholder="Ví dụ: 45000" min="0" step="1000" required>
+            </div>
+
+            <!-- 5. Mô tả món -->
+            <div class="form-group">
+              <label class="form-label" for="form-item-desc">Mô Tả</label>
+              <textarea id="form-item-desc" class="form-textarea" rows="3" placeholder="Mô tả ngắn gọn về món..."></textarea>
+            </div>
+
+            <!-- 6. Đường dẫn ảnh -->
+            <div class="form-group">
+              <label class="form-label" for="form-item-image">Đường Dẫn Hình Ảnh</label>
+              <select id="form-item-image" class="form-select">
+                <option value="/assets/images/drink_specialty.jpg">drink_specialty.jpg</option>
+                <option value="/assets/images/barista_station.jpg">barista_station.jpg</option>
+                <option value="/assets/images/artisan_pastries.jpg">artisan_pastries.jpg</option>
+                <option value="/assets/images/coffee_beans_roast.jpg">coffee_beans_roast.jpg</option>
+                <option value="/assets/images/cafe_ambiance.jpg">cafe_ambiance.jpg</option>
+              </select>
+            </div>
+
+            <!-- 7. Đánh dấu Bestseller -->
+            <div class="form-group">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="form-item-bestseller">
+                <span style="font-weight: 700;">Đánh dấu là Món Best seller</span>
+              </label>
+            </div>
+
+            <button type="submit" id="btn-submit-form" class="btn btn-primary btn-block" style="margin-top: 1rem;">
+              Thêm Món Vào Thực Đơn (Lưu DB)
+            </button>
+          </form>
+        </div>
+
+        <!-- Cột 2: Bảng Danh Sách Món & Lịch Sử Thay Đổi -->
+        <div class="admin-card">
+          <h2 class="admin-card-title">
+            <span>Danh Sách Món Trong Cơ Sở Dữ Liệu</span>
+            <button class="btn btn-outline btn-sm" onclick="loadAdminMenuItems()" style="float: right;">Làm Mới</button>
+          </h2>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Món Ăn / Thức Uống</th>
+                  <th>Danh Mục</th>
+                  <th>Giá Bán</th>
+                  <th>Lượt Thích</th>
+                  <th>Lịch Sử DB (Ai sửa / Khi nào)</th>
+                  <th>Hành Động</th>
+                </tr>
+              </thead>
+              <tbody id="admin-menu-tbody">
+                <!-- Rendered dynamically by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/home/" class="brand-logo">
+            <img src="/assets/images/logo.png" alt="Cáo Ngọt" class="brand-logo-img">
+            <div class="logo-text">
+              <span class="logo-title">CÁO NGỌT</span>
+            </div>
+          </a>
+          <p class="footer-desc">Khu vực quản trị hệ thống thực đơn và sản phẩm Cáo Ngọt.</p>
+          <div class="footer-socials">
+            <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-link" title="X"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Khám Phá</h4>
+          <ul class="footer-links">
+            <li><a href="/coffee/">Hạt Cà Phê</a></li>
+            <li><a href="/menu/">Thực Đơn</a></li>
+            <li><a href="/about/">Về Chúng Tôi</a></li>
+            <li><a href="/contact/">Liên Hệ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tài Khoản</h4>
+          <ul class="footer-links">
+            <li><a href="/login/">Đăng Nhập</a></li>
+            <li><a href="/register/">Đăng Ký Tài Khoản</a></li>
+            <li><a href="/cart/">Giỏ Hàng</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Thông Tin Liên Lạc</h4>
+          <ul class="contact-info-list">
+            <li class="contact-info-item">
+              <div>
+                <strong>Địa chỉ:</strong>
+                128 Nguyễn Đình Chiểu, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div>
+                <strong>Hotline:</strong>
+                0909 123 456
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div>
+                <strong>Email:</strong>
+                contact@caongot.vn
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Cáo Ngọt Vietnam. Bảo lưu mọi quyền.</div>
+        <div>Tone Xám Nhạt • Chữ Đen • Tối Giản Hiện Đại</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/shared/shared.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

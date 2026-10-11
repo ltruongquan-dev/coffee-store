@@ -1,0 +1,92 @@
+/* ==========================================================================
+   CÁO NGỌT - LOGIN PAGE STYLES
+   Tone: Xám nhạt, Chữ màu đen (#000000)
+   ========================================================================== */
+
+.auth-wrapper {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 4rem;
+  background-color: var(--body-bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gray-border);
+  box-shadow: var(--shadow-sm);
+  padding: 2.25rem 1.75rem;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .auth-card {
+    padding: 2.75rem 2.25rem;
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 0.35rem;
+}
+
+.auth-header p {
+  color: #000000;
+  font-size: 0.92rem;
+  font-weight: 400;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.45rem;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  background: var(--body-bg);
+  font-size: 0.95rem;
+  color: #000000;
+  transition: var(--transition);
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #000000;
+  background: #ffffff;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #000000;
+  font-weight: 500;
+}
+
+.auth-footer a {
+  color: #000000;
+  font-weight: 800;
+  text-decoration: underline;
+}

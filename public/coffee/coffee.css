@@ -1,0 +1,205 @@
+/* ==========================================================================
+   CÁO NGỌT - COFFEE BEANS INFO PAGE
+   Tone: Xám nhạt, Chữ màu đen (#000000)
+   Hiệu ứng rê chuột: CHỈ tăng boxshadow độ sâu, đậm hơn và loe ra ngoài hơn 2px
+   ========================================================================== */
+
+.coffee-hero {
+  background: var(--body-bg);
+  color: #000000;
+  padding: 3.5rem 0 2.5rem;
+  text-align: center;
+  border-bottom: 1.5px solid var(--gray-border);
+}
+
+.coffee-hero h1 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #000000;
+}
+
+@media (min-width: 768px) {
+  .coffee-hero h1 {
+    font-size: 2.8rem;
+  }
+}
+
+.coffee-hero p {
+  color: #000000;
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Bean Grid */
+.beans-section {
+  padding: 4rem 0;
+  background-color: var(--body-bg);
+}
+
+.beans-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .beans-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .beans-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.bean-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-border);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.bean-card:hover {
+  box-shadow: 0 4px 14px 3px rgba(0, 0, 0, 0.12);
+  transform: none !important;
+}
+
+.bean-card-img {
+  height: 220px;
+  background-color: var(--gray-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.bean-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bean-card:hover .bean-card-img img {
+  transform: none !important;
+}
+
+.bean-card-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.bean-card-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  color: #000000;
+}
+
+.bean-price {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #b84914;
+  margin-bottom: 1rem;
+}
+
+.bean-card-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.btn-add-cart-icon {
+  flex: 0 0 46px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid #000000;
+  background: var(--card-bg);
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-add-cart-icon:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.btn-buy-now {
+  flex: 1;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid #000000;
+  background: #000000;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-buy-now:hover {
+  background: #262626;
+  border-color: #262626;
+}
+
+/* Roast Spectrum Section */
+.roast-section {
+  background: #f5f5f5;
+  padding: 4rem 0;
+  border-top: 1px solid var(--gray-border);
+}
+
+.roast-timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .roast-timeline {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.roast-item {
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid var(--gray-border);
+  border-left: 5px solid #000000;
+}
+
+.roast-item h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #000000;
+}
+
+.roast-item p {
+  font-size: 0.9rem;
+  color: #000000;
+  font-weight: 400;
+}

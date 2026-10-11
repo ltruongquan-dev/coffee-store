@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cáo Ngọt - Cà Phê Mộc Nguyên Chất & Trải Nghiệm Hương Vị Đích Thực</title>
+  <meta name="description" content="Cáo Ngọt - Cà phê hạt mộc rang thủ công, thực đơn phong phú Espresso, Phindi và Trà sữa thượng hạng.">
+  
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/shared/common.css">
+  <link rel="stylesheet" href="/shared/navbar.css">
+  <link rel="stylesheet" href="/shared/footer.css">
+  <link rel="stylesheet" href="/home/home.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <!-- Logo -> Hạt cà phê -> Thực đơn -> Về chúng tôi -> Liên hệ -> Giỏ hàng -> User -->
+  <header class="site-header">
+    <div class="nav-container container">
+      <!-- 1. Logo (Click trở về trang chủ) -->
+      <a href="/home/" class="brand-logo" title="Cáo Ngọt - Về Trang Chủ">
+        <img src="/assets/images/logo.png" alt="Cáo Ngọt" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-title">CÁO NGỌT</span>
+        </div>
+      </a>
+
+      <!-- 2. Navbar Links -->
+      <ul class="nav-menu">
+        <li><a href="/coffee/" class="nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="nav-link">Thực Đơn</a></li>
+        <li><a href="/about/" class="nav-link">Về Chúng Tôi</a></li>
+        <li><a href="/contact/" class="nav-link">Liên Hệ</a></li>
+      </ul>
+
+      <!-- 3. Giỏ Hàng và Tài khoản (Text rõ ràng, không icon) -->
+      <div class="nav-actions">
+        <!-- Giỏ Hàng -->
+        <a href="/cart/" class="nav-text-btn" title="Giỏ hàng của bạn">
+          Giỏ hàng
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+
+        <!-- Tài Khoản Khách Hàng -->
+        <div class="user-menu-wrapper">
+          <button id="user-menu-btn" class="nav-text-btn" title="Tài khoản">
+            Tài khoản
+          </button>
+          <div id="user-dropdown" class="user-dropdown"></div>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Menu di động">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer & Overlay -->
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div>
+      <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+        <img src="/assets/images/logo.png" alt="Cáo Ngọt" style="height: 38px; width: auto; object-fit: contain;">
+        <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #000000;">CÁO NGỌT</span>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="/coffee/" class="mobile-nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="mobile-nav-link">Thực Đơn</a></li>
+        <li><a href="/about/" class="mobile-nav-link">Về Chúng Tôi</a></li>
+        <li><a href="/contact/" class="mobile-nav-link">Liên Hệ</a></li>
+        <li><a href="/cart/" class="mobile-nav-link">Giỏ Hàng Của Bạn</a></li>
+      </ul>
+    </div>
+    <div id="mobile-drawer-auth" class="mobile-drawer-auth"></div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- HERO BACKGROUND: CHIẾM 100% WIDTH, 90VH (Ảnh nền home-pg.avif) -->
+    <section class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content-wrap">
+        <span class="hero-tag">Tinh Hoa Cà Phê Mộc Đích Thực</span>
+        <h1 class="hero-title">Khám Phá Hương Vị Cà Phê Nguyên Bản Cùng Cáo Ngọt</h1>
+        <p class="hero-desc">
+          Chào mừng bạn đến với không gian thưởng thức hạt mộc thuần khiết, thiết kế tối giản trang nhã với tông màu xám nhạt và thực đơn phong phú từ Espresso, Phindi đến Trà sữa.
+        </p>
+        <div class="hero-btns">
+          <a href="/menu/" class="btn btn-primary">Order ngay</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. QUẦY PHA CHẾ (BARISTA & ESPRESSO BAR) -->
+    <section id="quay-pha-che" class="showcase-section">
+      <div class="container">
+        <div class="showcase-grid">
+          <div class="showcase-image-col">
+            <div class="image-frame">
+              <img src="/assets/images/barista_station.jpg" alt="Quầy pha chế cà phê thủ công tại Cáo Ngọt">
+            </div>
+          </div>
+          <div class="showcase-content-col">
+            <h2 class="showcase-title">Quầy Pha Chế Thủ Công & Tỉ Mỉ</h2>
+            <p class="showcase-desc">
+              Trái tim của Cáo Ngọt là quầy bar mở hiện đại, nơi bạn có thể tận mắt chiêm ngưỡng các Barista thực hiện từng thao tác căn chỉnh tỉ lệ chiết xuất, nhiệt độ nước và áp suất để cho ra ly Espresso và Latte Art hoàn hảo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. HÌNH ẢNH CỦA QUÁN (KHÔNG GIAN) -->
+    <section id="khong-gian-quan" class="showcase-section">
+      <div class="container">
+        <div class="showcase-grid reverse">
+          <div class="showcase-image-col">
+            <div class="image-frame">
+              <img src="/assets/images/cafe_ambiance.jpg" alt="Hình ảnh không gian quán Cáo Ngọt ấm cúng">
+            </div>
+          </div>
+          <div class="showcase-content-col">
+            <h2 class="showcase-title">Không Gian Xám Nhạt Tối Giản Thư Thái</h2>
+            <p class="showcase-desc">
+              Được thiết kế giao hòa giữa mảng tường xám trang nhã và ánh sáng tự nhiên ngập tràn. Cáo Ngọt mang lại cảm giác dễ chịu cho những giờ làm việc tập trung hoặc những cuộc gặp gỡ bạn bè thân tình.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. NƯỚC UỐNG ĐẶC TRƯNG -->
+    <section id="thuc-uong" class="showcase-section">
+      <div class="container">
+        <div class="showcase-grid">
+          <div class="showcase-image-col">
+            <div class="image-frame">
+              <img src="/assets/images/drink_specialty.jpg" alt="Nước uống đặc trưng và cà phê muối thơm ngon">
+            </div>
+          </div>
+          <div class="showcase-content-col">
+            <h2 class="showcase-title">Thực Đơn Nước Đa Dạng & Đậm Vị</h2>
+            <p class="showcase-desc">
+              Từ Cà phê Muối béo ngậy êm dịu, dòng Phindi thế hệ mới độc đáo, đến Trà Sữa Oolong Nướng đậm vị trà thơm vị sữa. Mỗi công thức nước uống tại Cáo Ngọt đều được sáng tạo tỉ mỉ để chiều lòng mọi gu thưởng thức.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HẠT CÀ PHÊ MỘC RANG XAY -->
+    <section id="hat-ca-phe" class="showcase-section">
+      <div class="container">
+        <div class="showcase-grid reverse">
+          <div class="showcase-image-col">
+            <div class="image-frame">
+              <img src="/assets/images/coffee_beans_roast.jpg" alt="Hạt cà phê đặc sản Arabica và Robusta rang mộc">
+            </div>
+          </div>
+          <div class="showcase-content-col">
+            <h2 class="showcase-title">Hạt Cà Phê Rang Mộc Thuần Khiết</h2>
+            <p class="showcase-desc">
+              Chúng tôi tuyển chọn thủ công từng mẻ hạt Arabica Cầu Đất cùng Robusta Honey Buôn Ma Thuột. Rang mộc 100% không tẩm ướp phụ gia hay bơ công nghiệp, giữ trọn vẹn hương vị đất trời Việt Nam.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/home/" class="brand-logo">
+            <img src="/assets/images/logo.png" alt="Cáo Ngọt" class="brand-logo-img">
+            <div class="logo-text">
+              <span class="logo-title">CÁO NGỌT</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            Không gian trải nghiệm cà phê mộc thủ công nguyên chất, trà sữa thượng hạng và các món ăn nhẹ tươi mới mỗi ngày.
+          </p>
+          <div class="footer-socials">
+            <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-link" title="X"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Khám Phá</h4>
+          <ul class="footer-links">
+            <li><a href="/coffee/">Hạt Cà Phê</a></li>
+            <li><a href="/menu/">Thực Đơn</a></li>
+            <li><a href="/about/">Về Chúng Tôi</a></li>
+            <li><a href="/contact/">Liên Hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Khách Hàng</h4>
+          <ul class="footer-links">
+            <li><a href="/login/">Đăng Nhập</a></li>
+            <li><a href="/register/">Đăng Ký Tài Khoản</a></li>
+            <li><a href="/cart/">Giỏ Hàng</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Thông Tin Liên Lạc</h4>
+          <ul class="contact-info-list">
+            <li class="contact-info-item">
+              <div>
+                <strong>Địa chỉ quán:</strong>
+                128 Nguyễn Đình Chiểu, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div>
+                <strong>Hotline đặt món:</strong>
+                0909 123 456 (07:00 - 22:30)
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div>
+                <strong>Email hỗ trợ:</strong>
+                contact@caongot.vn
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Cáo Ngọt Vietnam. Bảo lưu mọi quyền.</div>
+        <div>Tone Xám Nhạt • Chữ Đen • Tối Giản Hiện Đại</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/shared/shared.js"></script>
+</body>
+</html>

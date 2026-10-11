@@ -1,0 +1,337 @@
+/* ==========================================================================
+   CF STORE - HOME PAGE STYLES (MOBILE-FIRST)
+   Theme: Trắng Xám & Xanh Lá Pastel
+   Hero Background: width 100%, 90vh
+   Fonts: Heading (Plus Jakarta Sans), Content (Inter)
+   ========================================================================== */
+
+/* HERO SECTION - CHIẾM 100% WIDTH, 90VH */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 580px;
+  max-height: 950px;
+  background:
+    linear-gradient(135deg, rgba(247, 249, 247, 0.88) 0%, rgba(220, 234, 215, 0.75) 50%, rgba(31, 43, 30, 0.78) 100%),
+    url('/assets/images/home-pg.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 75% 30%, rgba(163, 201, 168, 0.35) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-content-wrap {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--primary-color);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--primary-mint);
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.35rem;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  color: var(--dark-espresso);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.hero-title span {
+  color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), #3e683a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+}
+
+.hero-desc {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: #314230;
+  margin-bottom: 2.25rem;
+  line-height: 1.8;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.hero-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 540px) {
+  .hero-btns {
+    flex-direction: row;
+  }
+}
+
+/* BESTSELLER SHOWCASE STRIP */
+.bestseller-strip {
+  padding: 4rem 0 3rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.bestseller-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .bestseller-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bestseller-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.bestseller-card {
+  background: var(--body-bg);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.bestseller-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.bestseller-card-img {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  background-color: var(--primary-light);
+}
+
+.bestseller-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bestseller-badge-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #ff7043, #f4511e);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(255, 112, 67, 0.4);
+}
+
+.bestseller-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.bestseller-card-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+
+.bestseller-card-title {
+  font-size: 1.05rem;
+  color: var(--dark-espresso);
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.bestseller-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--gray-border);
+}
+
+.bestseller-card-price {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--dark-espresso);
+}
+
+.like-action-btn {
+  background: #ffffff;
+  border: 1px solid var(--gray-border);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.like-action-btn:hover,
+.like-action-btn.liked {
+  border-color: #e91e63;
+  color: #e91e63;
+  background: #fdf2f8;
+}
+
+/* 4-5 MAIN SHOWCASE SECTIONS (Quầy pha chế | Không gian của quán | Nước | Món ăn | Hạt cà phê) */
+.showcase-section {
+  padding: 4.5rem 0;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.showcase-section:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.showcase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .showcase-grid.reverse .showcase-image-col {
+    order: 2;
+  }
+
+  .showcase-grid.reverse .showcase-content-col {
+    order: 1;
+  }
+}
+
+.showcase-image-col {
+  width: 100%;
+}
+
+.image-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-border);
+  background: var(--primary-light);
+}
+
+.image-frame img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .image-frame img {
+    height: 420px;
+  }
+}
+
+.image-tag-overlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(31, 43, 30, 0.82);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.showcase-content-col {
+  width: 100%;
+}
+
+.showcase-number {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1.5px;
+}
+
+.showcase-title {
+  font-size: 1.85rem;
+  margin-bottom: 1rem;
+  color: var(--dark-espresso);
+}
+
+@media (min-width: 768px) {
+  .showcase-title {
+    font-size: 2.25rem;
+  }
+}
+
+.showcase-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}

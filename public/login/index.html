@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Nhập - Cáo Ngọt</title>
+  <meta name="description" content="Đăng nhập tài khoản Cáo Ngọt bằng số điện thoại và mật khẩu.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/shared/common.css">
+  <link rel="stylesheet" href="/shared/navbar.css">
+  <link rel="stylesheet" href="/shared/footer.css">
+  <link rel="stylesheet" href="/login/login.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="nav-container container">
+      <a href="/home/" class="brand-logo" title="Cáo Ngọt - Về Trang Chủ">
+        <img src="/assets/images/logo.png" alt="Cáo Ngọt" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-title">CÁO NGỌT</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="/coffee/" class="nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="nav-link">Thực Đơn</a></li>
+        <li><a href="/about/" class="nav-link">Về Chúng Tôi</a></li>
+        <li><a href="/contact/" class="nav-link">Liên Hệ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/cart/" class="nav-text-btn" title="Giỏ hàng">
+          Giỏ hàng
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+
+        <div class="user-menu-wrapper">
+          <button id="user-menu-btn" class="nav-text-btn" title="Tài khoản">
+            Tài khoản
+          </button>
+          <div id="user-dropdown" class="user-dropdown"></div>
+        </div>
+
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Menu di động">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div>
+      <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+        <img src="/assets/images/logo.png" alt="Cáo Ngọt" style="height: 38px; width: auto; object-fit: contain;">
+        <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #000000;">CÁO NGỌT</span>
+      </div>
+      <ul class="mobile-menu-links">
+        <li><a href="/coffee/" class="mobile-nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="mobile-nav-link">Thực Đơn</a></li>
+        <li><a href="/about/" class="mobile-nav-link">Về Chúng Tôi</a></li>
+        <li><a href="/contact/" class="mobile-nav-link">Liên Hệ</a></li>
+        <li><a href="/cart/" class="mobile-nav-link">Giỏ Hàng Của Bạn</a></li>
+      </ul>
+    </div>
+    <div id="mobile-drawer-auth" class="mobile-drawer-auth"></div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1>Đăng Nhập</h1>
+          <p>Nhập số điện thoại và mật khẩu để tiếp tục</p>
+        </div>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label class="form-label" for="login-phone">Số Điện Thoại</label>
+            <input type="tel" id="login-phone" class="auth-input" placeholder="Ví dụ: 0909123456" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-password">Mật Khẩu</label>
+            <input type="password" id="login-password" class="auth-input" placeholder="Nhập mật khẩu" required>
+          </div>
+
+          <button type="submit" id="btn-submit-login" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
+            Đăng Nhập Ngay
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Chưa có tài khoản? <a href="/register/">Đăng ký tài khoản mới</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/home/" class="brand-logo">
+            <img src="/assets/images/logo.png" alt="Cáo Ngọt" class="brand-logo-img">
+            <div class="logo-text">
+              <span class="logo-title">CÁO NGỌT</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            Không gian trải nghiệm cà phê mộc thủ công nguyên chất, trà sữa thượng hạng và các món ăn nhẹ tươi mới mỗi ngày.
+          </p>
+          <div class="footer-socials">
+            <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-link" title="X"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Khám Phá</h4>
+          <ul class="footer-links">
+            <li><a href="/coffee/">Hạt Cà Phê</a></li>
+            <li><a href="/menu/">Thực Đơn</a></li>
+            <li><a href="/about/">Về Chúng Tôi</a></li>
+            <li><a href="/contact/">Liên Hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Khách Hàng</h4>
+          <ul class="footer-links">
+            <li><a href="/login/">Đăng Nhập</a></li>
+            <li><a href="/register/">Đăng Ký Tài Khoản</a></li>
+            <li><a href="/cart/">Giỏ Hàng</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Thông Tin Liên Lạc</h4>
+          <ul class="contact-info-list">
+            <li class="contact-info-item">
+              <div>
+                <strong>Địa chỉ:</strong>
+                128 Nguyễn Đình Chiểu, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div>
+                <strong>Hotline:</strong>
+                0909 123 456
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div>
+                <strong>Email:</strong>
+                contact@caongot.vn
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Cáo Ngọt Vietnam. Bảo lưu mọi quyền.</div>
+        <div>Tone Xám Nhạt • Chữ Đen • Tối Giản Hiện Đại</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/shared/shared.js"></script>
+  <script src="/login/login.js"></script>
+</body>
+</html>

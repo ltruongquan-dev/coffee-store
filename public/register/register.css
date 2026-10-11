@@ -1,0 +1,155 @@
+/* ==========================================================================
+   CÁO NGỌT - REGISTER PAGE STYLES
+   Tone: Xám nhạt, Chữ màu đen (#000000)
+   ========================================================================== */
+
+.auth-wrapper {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 4rem;
+  background-color: var(--body-bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gray-border);
+  box-shadow: var(--shadow-sm);
+  padding: 2.25rem 1.75rem;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .auth-card {
+    padding: 2.75rem 2.25rem;
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 0.35rem;
+}
+
+.auth-header p {
+  color: #000000;
+  font-size: 0.92rem;
+  font-weight: 400;
+}
+
+/* Stepper Progress */
+.stepper-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.step-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: #ffffff;
+  color: #000000;
+}
+
+.step-indicator.active .step-circle {
+  background: #000000;
+  color: #ffffff;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background-color: var(--gray-border);
+  max-width: 50px;
+}
+
+.step-line.active {
+  background-color: #000000;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.45rem;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  background: var(--body-bg);
+  font-size: 0.95rem;
+  color: #000000;
+  transition: var(--transition);
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #000000;
+  background: #ffffff;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #000000;
+  font-weight: 500;
+}
+
+.auth-footer a {
+  color: #000000;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.otp-box-wrapper {
+  background: var(--body-bg);
+  border: 1.5px solid var(--gray-border);
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+}
+
+.otp-code-input {
+  letter-spacing: 6px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-align: center;
+}
