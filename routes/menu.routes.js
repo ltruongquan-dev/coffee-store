@@ -33,17 +33,23 @@ let hasSeeded = false;
 async function seedMenuIfEmpty() {
   if (hasSeeded) return;
   try {
+    const initialItems = readMenuJson();
     const count = await MenuItem.countDocuments();
-    if (count === 0) {
-      const initialItems = readMenuJson();
+    const hasOldData = await MenuItem.findOne({ image: { $regex: /drink_specialty|artisan_pastries|coffee_beans_roast/ } });
+    if (count === 0 || hasOldData) {
+      if (hasOldData) {
+        await MenuItem.deleteMany({});
+      }
       if (initialItems.length > 0) {
         for (const item of initialItems) {
           await MenuItem.create({
+            code: item.code || '',
             name: item.name,
             category: (item.category || '').toLowerCase().trim(),
+            productGroup: item.productGroup || 'nước',
             price: item.price,
             description: item.description || '',
-            image: item.image || '/assets/images/drink_specialty.jpg',
+            image: item.image || '/assets/images/home/home-bg.avif',
             isBestseller: !!item.isBestseller,
             likes: item.likes || 0,
             createdBy: item.createdBy || 'Admin Quản Trị',
@@ -63,6 +69,25 @@ async function seedMenuIfEmpty() {
 // 1. GET /api/menu - Lấy danh sách thực đơn (tối ưu tốc độ cao với lean query)
 router.get('/', async (req, res) => {
   try {
+    // Nếu MongoDB chưa kết nối, lập tức trả về file JSON không chờ timeout
+    if (require('mongoose').connection.readyState !== 1) {
+      const fallback = readMenuJson();
+      const { category, bestseller } = req.query;
+      let items = fallback;
+      if (category && category !== 'all') {
+        items = items.filter(i => (i.category || '').toLowerCase().trim() === category.toLowerCase().trim());
+      }
+      if (bestseller === 'true') {
+        items = items.filter(i => !!i.isBestseller);
+      }
+      return res.status(200).json({
+        success: true,
+        count: items.length,
+        data: items,
+        source: 'json_immediate_fallback'
+      });
+    }
+
     if (!hasSeeded) {
       await seedMenuIfEmpty();
     }
@@ -101,15 +126,16 @@ router.get('/', async (req, res) => {
 });
 
 function normalizeCategory(cat) {
-  if (!cat) return null;
+  if (!cat) return 'cà phê';
   const c = cat.toLowerCase().trim();
-  if (c.includes('cà phê') || c.includes('ca phe') || c === 'coffee') return 'cà phê';
-  if (c.includes('espresso') || c.includes('esspresso')) return 'espresso';
-  if (c.includes('phindi')) return 'phindi';
+  if (c.includes('cà phê') || c.includes('ca phe') || c.includes('coffee') || c.includes('cacao')) return 'cà phê';
+  if (c.includes('sinh tố') || c.includes('nước ép') || c.includes('juice') || c.includes('smoothie')) return 'sinh tố & nước ép';
+  if (c.includes('đá xay') || c.includes('soda') || c.includes('pha chế') || c.includes('sữa chua')) return 'đá xay & pha chế';
   if (c.includes('trà sữa') || c.includes('tra sua') || c.includes('milktea')) return 'trà sữa';
+  if (c.includes('trà trái cây') || c.includes('thanh nhiệt') || c.includes('tea')) return 'trà trái cây';
   if (c.includes('combo')) return 'combo bánh nước';
   if (c.includes('bánh') || c.includes('banh') || c.includes('cake') || c.includes('pastry')) return 'bánh';
-  return null;
+  return c;
 }
 
 // 2. POST /api/menu - Admin thêm món mới vào thực đơn (lưu MongoDB, ghi người tạo và thời gian)

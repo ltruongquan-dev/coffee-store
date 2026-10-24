@@ -1,0 +1,261 @@
+[
+  {
+    "ma_mon": "BAKE01",
+    "ten_mon": "Bánh sừng bò Pháp (Croissant)",
+    "gia": 35000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/bánh sừng bò.webp"
+  },
+  {
+    "ma_mon": "BAKE02",
+    "ten_mon": "Bánh Donut sô cô la cốm",
+    "gia": 28000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/donut.webp"
+  },
+  {
+    "ma_mon": "BAKE03",
+    "ten_mon": "Bánh Macaron hồng (vị dâu tây)",
+    "gia": 32000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/Macaron hồng (vị dâu tây).jpg"
+  },
+  {
+    "ma_mon": "BAKE04",
+    "ten_mon": "Bánh Macaron nâu (vị chocolate đậm)",
+    "gia": 32000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/Macaron nâu (vị chocolate đậm).jpg"
+  },
+  {
+    "ma_mon": "BAKE05",
+    "ten_mon": "Bánh Macaron vàng (vị chanh vàng)",
+    "gia": 32000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/Macaron vàng (vị chanh vàng).jpg"
+  },
+  {
+    "ma_mon": "BAKE06",
+    "ten_mon": "Bánh Macaron xanh lá (vị matcha)",
+    "gia": 32000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/Macaron xanh lá (vị matcha).jpg"
+  },
+  {
+    "ma_mon": "BAKE07",
+    "ten_mon": "Bánh Mousse đào hồng phấn",
+    "gia": 42000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/Mousse đào hồng phấn.jpg"
+  },
+  {
+    "ma_mon": "BAKE08",
+    "ten_mon": "Bánh su kem vỏ giòn Craquelin",
+    "gia": 25000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/su kem vỏ giòn.jpg"
+  },
+  {
+    "ma_mon": "BAKE09",
+    "ten_mon": "Bánh Tiramisu cacao cổ điển",
+    "gia": 45000,
+    "danh_muc": "Bánh Ngọt & Pastry",
+    "hinh_anh": "/assets/images/Bánh/Tiramisu cacao cổ điển.webp"
+  },
+  {
+    "ma_mon": "CF01",
+    "ten_mon": "Bạc Xỉu 3 Tầng",
+    "gia": 35000,
+    "danh_muc": "Cà Phê & Cacao",
+    "hinh_anh": "/assets/images/cafe and cacao/bac xiu.jpg"
+  },
+  {
+    "ma_mon": "CF02",
+    "ten_mon": "Cà Phê Sữa Đá Truyền Thống",
+    "gia": 32000,
+    "danh_muc": "Cà Phê & Cacao",
+    "hinh_anh": "/assets/images/cafe and cacao/ca-phe-sua-da.jpg"
+  },
+  {
+    "ma_mon": "CF03",
+    "ten_mon": "Cà Phê Muối Kem Béo",
+    "gia": 38000,
+    "danh_muc": "Cà Phê & Cacao",
+    "hinh_anh": "/assets/images/cafe and cacao/cà phê muối.jpg"
+  },
+  {
+    "ma_mon": "CF04",
+    "ten_mon": "Cà Phê Trứng Hà Nội",
+    "gia": 45000,
+    "danh_muc": "Cà Phê & Cacao",
+    "hinh_anh": "/assets/images/cafe and cacao/cà phê trứng.jpg"
+  },
+  {
+    "ma_mon": "CF05",
+    "ten_mon": "Cacao Nóng Marshmallow",
+    "gia": 42000,
+    "danh_muc": "Cà Phê & Cacao",
+    "hinh_anh": "/assets/images/cafe and cacao/Cacao nóng marshmallow.jpg"
+  },
+  {
+    "ma_mon": "JUICE01",
+    "ten_mon": "Nước Ép Cam Dứa Hạt Chia",
+    "gia": 42000,
+    "danh_muc": "Sinh Tố & Nước Ép",
+    "hinh_anh": "/assets/images/Sinh tố & Nước ép/Nước ép cam dứa hạt chia.jpg"
+  },
+  {
+    "ma_mon": "JUICE02",
+    "ten_mon": "Nước Ép Cóc Táo Xanh",
+    "gia": 39000,
+    "danh_muc": "Sinh Tố & Nước Ép",
+    "hinh_anh": "/assets/images/Sinh tố & Nước ép/Nước ép cóc táo xanh.jpg"
+  },
+  {
+    "ma_mon": "JUICE03",
+    "ten_mon": "Nước Ép Ổi Hồng Dưa Hấu",
+    "gia": 42000,
+    "danh_muc": "Sinh Tố & Nước Ép",
+    "hinh_anh": "/assets/images/Sinh tố & Nước ép/Nước ép ổi hồng dưa hấu.jpg"
+  },
+  {
+    "ma_mon": "SMOOTH01",
+    "ten_mon": "Sinh Tố Bơ Sầu Riêng Đắk Lắk",
+    "gia": 55000,
+    "danh_muc": "Sinh Tố & Nước Ép",
+    "hinh_anh": "/assets/images/Sinh tố & Nước ép/Sinh tố bơ sầu riêng.webp"
+  },
+  {
+    "ma_mon": "SMOOTH02",
+    "ten_mon": "Sinh Tố Xoài Chanh Leo",
+    "gia": 45000,
+    "danh_muc": "Sinh Tố & Nước Ép",
+    "hinh_anh": "/assets/images/Sinh tố & Nước ép/Sinh tố xoài chanh leo.jpg"
+  },
+  {
+    "ma_mon": "FREEZE01",
+    "ten_mon": "Chocolate Đá Xay Sốt Caramel",
+    "gia": 49000,
+    "danh_muc": "Soda & Thức Uống Pha Chế",
+    "hinh_anh": "/assets/images/Soda & Thức uống giải khát pha chế/Chocolate đá xay sốt caramel.jpg"
+  },
+  {
+    "ma_mon": "FREEZE02",
+    "ten_mon": "Matcha Latte Đá Xay",
+    "gia": 49000,
+    "danh_muc": "Soda & Thức Uống Pha Chế",
+    "hinh_anh": "/assets/images/Soda & Thức uống giải khát pha chế/Matcha Latte đá xay.webp"
+  },
+  {
+    "ma_mon": "SODA01",
+    "ten_mon": "Soda Chanh Tươi Sủi Bọt",
+    "gia": 35000,
+    "danh_muc": "Soda & Thức Uống Pha Chế",
+    "hinh_anh": "/assets/images/Soda & Thức uống giải khát pha chế/Soda chanh sủi bọt.webp"
+  },
+  {
+    "ma_mon": "SODA02",
+    "ten_mon": "Soda Việt Quất Bạc Hà",
+    "gia": 38000,
+    "danh_muc": "Soda & Thức Uống Pha Chế",
+    "hinh_anh": "/assets/images/Soda & Thức uống giải khát pha chế/Soda việt quất bạc hà.jpg"
+  },
+  {
+    "ma_mon": "YOGURT01",
+    "ten_mon": "Sữa Chua Dẻo Hạt Lựu Cốt Dừa",
+    "gia": 42000,
+    "danh_muc": "Soda & Thức Uống Pha Chế",
+    "hinh_anh": "/assets/images/Soda & Thức uống giải khát pha chế/Sữa chua dẻo hạt lựu cốt dừa.jpg"
+  },
+  {
+    "ma_mon": "MILKTEA01",
+    "ten_mon": "Trà Sữa Khoai Môn Tím",
+    "gia": 38000,
+    "danh_muc": "Trà Sữa Đặc Biệt",
+    "hinh_anh": "/assets/images/Trà sữa/Trà sữa khoai môn.webp"
+  },
+  {
+    "ma_mon": "MILKTEA02",
+    "ten_mon": "Trà Sữa Lài Kem Cheese",
+    "gia": 42000,
+    "danh_muc": "Trà Sữa Đặc Biệt",
+    "hinh_anh": "/assets/images/Trà sữa/trà sữa lài kêm cheese.webp"
+  },
+  {
+    "ma_mon": "MILKTEA03",
+    "ten_mon": "Trà Sữa Thái Đỏ",
+    "gia": 35000,
+    "danh_muc": "Trà Sữa Đặc Biệt",
+    "hinh_anh": "/assets/images/Trà sữa/trà sữa thái đỏ.webp"
+  },
+  {
+    "ma_mon": "MILKTEA04",
+    "ten_mon": "Sữa Tươi Trân Châu Đường Đen",
+    "gia": 42000,
+    "danh_muc": "Trà Sữa Đặc Biệt",
+    "hinh_anh": "/assets/images/Trà sữa/trà sữa trân châu đường đen.jpg"
+  },
+  {
+    "ma_mon": "MILKTEA05",
+    "ten_mon": "Trà Sữa Ô Long Nướng",
+    "gia": 42000,
+    "danh_muc": "Trà Sữa Đặc Biệt",
+    "hinh_anh": "/assets/images/Trà sữa/Trà sữa Ô long nướng.jpg"
+  },
+  {
+    "ma_mon": "TEA01",
+    "ten_mon": "Trà Dâu Tằm Bạc Hà",
+    "gia": 39000,
+    "danh_muc": "Trà Trái Cây & Thanh Nhiệt",
+    "hinh_anh": "/assets/images/Trà trái cây & Trà thanh nhiệt/Trà dâu tằm bạc hà.jpg"
+  },
+  {
+    "ma_mon": "TEA02",
+    "ten_mon": "Trà Mãng Cầu Xiêm Tươi",
+    "gia": 42000,
+    "danh_muc": "Trà Trái Cây & Thanh Nhiệt",
+    "hinh_anh": "/assets/images/Trà trái cây & Trà thanh nhiệt/Trà mãng cầu xiêm.webp"
+  },
+  {
+    "ma_mon": "TEA03",
+    "ten_mon": "Trà Sen Vàng Macchiato",
+    "gia": 45000,
+    "danh_muc": "Trà Trái Cây & Thanh Nhiệt",
+    "hinh_anh": "/assets/images/Trà trái cây & Trà thanh nhiệt/Trà sen vàng macchiato.jpg"
+  },
+  {
+    "ma_mon": "TEA04",
+    "ten_mon": "Trà Vải Hoa Hồng Hoàng Gia",
+    "gia": 42000,
+    "danh_muc": "Trà Trái Cây & Thanh Nhiệt",
+    "hinh_anh": "/assets/images/Trà trái cây & Trà thanh nhiệt/Trà vải hoa hồng.jpg"
+  },
+  {
+    "ma_mon": "TEA05",
+    "ten_mon": "Trà Đào Cam Sả Tươi",
+    "gia": 39000,
+    "danh_muc": "Trà Trái Cây & Thanh Nhiệt",
+    "hinh_anh": "/assets/images/Trà trái cây & Trà thanh nhiệt/Trà đào cam sả.png"
+  },
+  {
+    "ma_mon": "COMBO01",
+    "ten_mon": "Combo Khởi Đầu: Cà Phê Muối + Croissant Bơ Pháp",
+    "gia": 65000,
+    "danh_muc": "Combo Tiết Kiệm",
+    "hinh_anh": "/assets/images/home/bánh sừng và cf sữa.jpg"
+  },
+  {
+    "ma_mon": "COMBO02",
+    "ten_mon": "Combo Chiều Thư Thái: Trà Sữa Ô Long + Tiramisu Cacao",
+    "gia": 79000,
+    "danh_muc": "Combo Tiết Kiệm",
+    "hinh_anh": "/assets/images/Bánh/Tiramisu cacao cổ điển.webp"
+  },
+  {
+    "ma_mon": "COMBO03",
+    "ten_mon": "Combo Tươi Mát: Trà Đào Cam Sả + Su Kem Vỏ Giòn",
+    "gia": 58000,
+    "danh_muc": "Combo Tiết Kiệm",
+    "hinh_anh": "/assets/images/Trà trái cây & Trà thanh nhiệt/Trà đào cam sả.png"
+  }
+]

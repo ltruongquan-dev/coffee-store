@@ -47,120 +47,170 @@
 }
 
 @media (min-width: 768px) {
-  .beans-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1100px) {
-  .beans-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.bean-card {
+/* Single Bean Showcase - Giới thiệu hạt Tây Nguyên */
+.single-bean-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   background: #ffffff;
-  border-radius: var(--radius-md);
   border: 1px solid var(--gray-border);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.25s ease;
-  display: flex;
-  flex-direction: column;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
-.bean-card:hover {
-  box-shadow: 0 4px 14px 3px rgba(0, 0, 0, 0.12);
-  transform: none !important;
+@media (min-width: 900px) {
+  .single-bean-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 3.5rem;
+    padding: 2.75rem;
+    align-items: center;
+  }
 }
 
-.bean-card-img {
-  height: 220px;
-  background-color: var(--gray-light);
+.single-bean-frame {
   position: relative;
+  border-radius: var(--radius-md);
   overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  background: #e0e0e0;
 }
 
-.bean-card-img img {
+.single-bean-frame img {
   width: 100%;
-  height: 100%;
+  height: 320px;
   object-fit: cover;
+  display: block;
 }
 
-.bean-card:hover .bean-card-img img {
-  transform: none !important;
+@media (min-width: 900px) {
+  .single-bean-frame img {
+    height: 440px;
+  }
 }
 
-.bean-card-body {
-  padding: 1.25rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.bean-card-body h3 {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 800;
-  margin-bottom: 0.6rem;
-  color: #000000;
-}
-
-.bean-price {
-  font-weight: 800;
-  font-size: 1.15rem;
-  color: #b84914;
-  margin-bottom: 1rem;
-}
-
-.bean-card-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-top: auto;
-}
-
-.btn-add-cart-icon {
-  flex: 0 0 46px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid #000000;
-  background: var(--card-bg);
-  color: #000000;
-  font-size: 1.2rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.btn-add-cart-icon:hover {
+.single-bean-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
   background: #000000;
   color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
 }
 
-.btn-buy-now {
-  flex: 1;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid #000000;
-  background: #000000;
-  color: #ffffff !important;
+.bean-tag-origin {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #000000;
+  border: 1px solid #d4d4d4;
+  font-size: 0.8rem;
   font-weight: 700;
-  font-size: 0.92rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--transition);
-  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
 }
 
-.btn-buy-now:hover {
-  background: #262626;
-  border-color: #262626;
+.single-bean-name {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 900px) {
+  .single-bean-name {
+    font-size: 2.1rem;
+  }
+}
+
+.single-bean-desc {
+  font-size: 1rem;
+  color: #333333;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+.bean-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+@media (min-width: 600px) {
+  .bean-specs-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.bean-spec-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.bean-spec-item i {
+  font-size: 1.2rem;
+  color: #000000;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.bean-spec-item strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 2px;
+}
+
+.bean-spec-item span {
+  display: block;
+  font-size: 0.82rem;
+  color: #555555;
+  line-height: 1.4;
+}
+
+.bean-intro-notice {
+  background: #fdf8f4;
+  border: 1px solid #f2d8c2;
+  border-left: 4px solid #b84914;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.bean-intro-notice i {
+  color: #b84914;
+  font-size: 1.25rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.bean-intro-notice strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #793409;
+  margin-bottom: 3px;
+}
+
+.bean-intro-notice span {
+  font-size: 0.85rem;
+  color: #5d351b;
+  line-height: 1.5;
 }
 
 /* Roast Spectrum Section */

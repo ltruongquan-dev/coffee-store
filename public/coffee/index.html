@@ -6,6 +6,11 @@
   <title>Hạt Cà Phê Mộc - Cáo Ngọt</title>
   <meta name="description" content="Khám phá các dòng hạt cà phê đặc sản rang mộc thuần khiết: Arabica Cầu Đất, Robusta Honey và Culi Buôn Ma Thuột.">
   
+  <!-- Google Fonts: Plus Jakarta Sans & Inter (Font không chân / Sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/shared/common.css">
   <link rel="stylesheet" href="/shared/navbar.css">
@@ -32,14 +37,14 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="/cart/" class="nav-text-btn" title="Giỏ hàng">
-          Giỏ hàng
+        <a href="/cart/" class="nav-icon-btn nav-cart-btn" title="Giỏ hàng" aria-label="Giỏ hàng">
+          <i class="fa-solid fa-bag-shopping"></i>
           <span class="cart-badge" style="display: none;">0</span>
         </a>
 
         <div class="user-menu-wrapper">
-          <button id="user-menu-btn" class="nav-text-btn" title="Tài khoản">
-            Tài khoản
+          <button id="user-menu-btn" class="nav-icon-btn nav-user-btn" title="Tài khoản khách hàng" aria-label="Tài khoản">
+            <i class="fa-solid fa-user"></i>
           </button>
           <div id="user-dropdown" class="user-dropdown"></div>
         </div>
@@ -74,62 +79,72 @@
   <main>
     <section class="coffee-hero">
       <div class="container">
-        <h1>Hạt Cà Phê Rang Mộc</h1>
-        <p>100% hạt mộc nguyên chất, tuyển chọn thủ công từ Cầu Đất và Đắk Lắk. Rang theo mẻ nhỏ để giữ nguyên hương vị đất trời.</p>
+        <h1>Hạt Cà Phê Rang Mộc Tây Nguyên</h1>
+        <p>100% hạt mộc nguyên chất tuyển chọn từ thủ phủ cà phê Buôn Ma Thuột. Rang mộc thủ công mẻ nhỏ để giữ trọn tinh hoa hương vị đại ngàn.</p>
       </div>
     </section>
 
-    <!-- DANH SÁCH CÁC LOẠI HẠT (Mỗi món chỉ chứa ảnh, tên món, giá và 2 nút) -->
+    <!-- GIỚI THIỆU HẠT CÀ PHÊ TÂY NGUYÊN (CHỈ GIỚI THIỆU, KHÔNG BÁN) -->
     <section class="beans-section">
       <div class="container">
         <div class="section-header">
-          <span class="subtitle">Bản Đồ Nguồn Hạt</span>
-          <h2 class="title">Các Dòng Hạt Đặc Sản Tại Cáo Ngọt</h2>
-          <p class="desc">100% hạt mộc rang thủ công, không tẩm ướp phụ gia hay hương liệu nhân tạo.</p>
+          <span class="subtitle">Nguồn Gốc Nông Sản</span>
+          <h2 class="title">Hạt Cà Phê Rang Mộc Tây Nguyên</h2>
+          <p class="desc">Tâm huyết giữ gìn bản sắc cà phê Việt Nam thuần khiết, không pha tạp, không tẩm ướp.</p>
         </div>
 
-        <div class="beans-grid">
-          <!-- Bean 1: Arabica Cầu Đất -->
-          <div class="bean-card">
-            <div class="bean-card-img">
-              <img src="/assets/images/coffee_beans_roast.jpg" alt="Hạt Arabica Cầu Đất">
-            </div>
-            <div class="bean-card-body">
-              <h3>Arabica Bourbon Cầu Đất</h3>
-              <div class="bean-price">180.000₫</div>
-              <div class="bean-card-actions">
-                <button class="btn-add-cart-icon" onclick="addToCart({ id: 'bean-arabica', name: 'Arabica Bourbon Cầu Đất', price: 180000, image: '/assets/images/coffee_beans_roast.jpg' })" title="Thêm vào giỏ"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn-buy-now" onclick="buyNow({ id: 'bean-arabica', name: 'Arabica Bourbon Cầu Đất', price: 180000, image: '/assets/images/coffee_beans_roast.jpg' })">Mua ngay</button>
-              </div>
+        <div class="single-bean-showcase">
+          <div class="single-bean-img-col">
+            <div class="single-bean-frame">
+              <img src="/assets/images/home/hạt cà phê Việt.jpg" alt="Hạt Cà Phê Rang Mộc Tây Nguyên Cáo Ngọt">
+              <div class="single-bean-badge">100% Hạt Mộc Nguyên Bản</div>
             </div>
           </div>
+          <div class="single-bean-content-col">
+            <span class="bean-tag-origin">Xuất xứ: Đắk Lắk - Buôn Ma Thuột (Tây Nguyên)</span>
+            <h3 class="single-bean-name">Hạt Cà Phê Mộc Đặc Sản Tây Nguyên</h3>
+            
+            <p class="single-bean-desc">
+              Được nuôi dưỡng trên tầng đất đỏ bazan màu mỡ cùng khí hậu nắng gió đặc trưng của đại ngàn Tây Nguyên. Những quả cà phê chín mọng được người nông dân thu hái thủ công 100%, sơ chế tự nhiên và phơi trên giàn lưới dưới nắng trời.
+            </p>
 
-          <!-- Bean 2: Robusta Honey -->
-          <div class="bean-card">
-            <div class="bean-card-img">
-              <img src="/assets/images/coffee_beans_roast.jpg" alt="Hạt Robusta Honey">
-            </div>
-            <div class="bean-card-body">
-              <h3>Robusta Honey Buôn Ma Thuột</h3>
-              <div class="bean-price">145.000₫</div>
-              <div class="bean-card-actions">
-                <button class="btn-add-cart-icon" onclick="addToCart({ id: 'bean-robusta', name: 'Robusta Honey Buôn Ma Thuột', price: 145000, image: '/assets/images/coffee_beans_roast.jpg' })" title="Thêm vào giỏ"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn-buy-now" onclick="buyNow({ id: 'bean-robusta', name: 'Robusta Honey Buôn Ma Thuột', price: 145000, image: '/assets/images/coffee_beans_roast.jpg' })">Mua ngay</button>
+            <div class="bean-specs-grid">
+              <div class="bean-spec-item">
+                <i class="fa-solid fa-mountain-sun"></i>
+                <div>
+                  <strong>Độ cao canh tác</strong>
+                  <span>600m - 900m so với mực nước biển</span>
+                </div>
+              </div>
+              <div class="bean-spec-item">
+                <i class="fa-solid fa-fire-burner"></i>
+                <div>
+                  <strong>Cấp độ rang</strong>
+                  <span>Medium-Dark Roast (Rang Mộc Thủ Công)</span>
+                </div>
+              </div>
+              <div class="bean-spec-item">
+                <i class="fa-solid fa-mug-saucer"></i>
+                <div>
+                  <strong>Hương vị đặc trưng</strong>
+                  <span>Đậm đà êm dịu, hương gỗ thơm mộc mạc, hậu vị ngọt sâu</span>
+                </div>
+              </div>
+              <div class="bean-spec-item">
+                <i class="fa-solid fa-certificate"></i>
+                <div>
+                  <strong>Cam kết chất lượng</strong>
+                  <span>Không bơ, không hương liệu nhân tạo, không chất bảo quản</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Bean 3: Culi Đặc Sản -->
-          <div class="bean-card">
-            <div class="bean-card-img">
-              <img src="/assets/images/coffee_beans_roast.jpg" alt="Hạt Culi Đắk Lắk">
-            </div>
-            <div class="bean-card-body">
-              <h3>Culi Peaberry Đắk Nông</h3>
-              <div class="bean-price">165.000₫</div>
-              <div class="bean-card-actions">
-                <button class="btn-add-cart-icon" onclick="addToCart({ id: 'bean-culi', name: 'Culi Peaberry Đắk Nông', price: 165000, image: '/assets/images/coffee_beans_roast.jpg' })" title="Thêm vào giỏ"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="btn-buy-now" onclick="buyNow({ id: 'bean-culi', name: 'Culi Peaberry Đắk Nông', price: 165000, image: '/assets/images/coffee_beans_roast.jpg' })">Mua ngay</button>
+            <!-- Ghi chú rõ ràng không bán thương mại -->
+            <div class="bean-intro-notice">
+              <i class="fa-solid fa-circle-info"></i>
+              <div>
+                <strong>Lưu ý dành cho khách hàng:</strong>
+                <span>Cáo Ngọt chỉ sử dụng dòng hạt cà phê Tây Nguyên này để chiết xuất và phục vụ đồ uống trực tiếp tại quán. Chúng tôi không kinh doanh bán lẻ gói hạt nhằm đảm bảo chất lượng pha chế chuẩn mực nhất.</span>
               </div>
             </div>
           </div>

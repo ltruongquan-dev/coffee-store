@@ -6,6 +6,11 @@
   <title>Giỏ Hàng - Cáo Ngọt</title>
   <meta name="description" content="Xem và quản lý các món nước, món ăn và hạt cà phê đã chọn tại Cáo Ngọt.">
   
+  <!-- Google Fonts: Plus Jakarta Sans & Inter (Font không chân / Sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/shared/common.css">
   <link rel="stylesheet" href="/shared/navbar.css">
@@ -32,14 +37,14 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="/cart/" class="nav-text-btn" title="Giỏ hàng" style="background: #000000; color: #ffffff;">
-          Giỏ hàng
-          <span class="cart-badge" style="display: none; background: #ffffff; color: #000000;">0</span>
+        <a href="/cart/" class="nav-icon-btn nav-cart-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="background: #000000; color: #ffffff;">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" style="display: none; background: #d32f2f; color: #ffffff;">0</span>
         </a>
 
         <div class="user-menu-wrapper">
-          <button id="user-menu-btn" class="nav-text-btn" title="Tài khoản">
-            Tài khoản
+          <button id="user-menu-btn" class="nav-icon-btn nav-user-btn" title="Tài khoản khách hàng" aria-label="Tài khoản">
+            <i class="fa-solid fa-user"></i>
           </button>
           <div id="user-dropdown" class="user-dropdown"></div>
         </div>
@@ -81,6 +86,24 @@
 
     <section class="cart-section">
       <div class="container">
+        <!-- Progress Steps Indicator -->
+        <div class="checkout-steps-bar" id="checkout-steps-bar" style="display: none;">
+          <div class="step-item active" id="step-node-1">
+            <span class="step-num">1</span>
+            <span class="step-label">Giỏ hàng & Thông tin</span>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step-item" id="step-node-2">
+            <span class="step-num">2</span>
+            <span class="step-label">Thanh toán Online</span>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step-item" id="step-node-3">
+            <span class="step-num">3</span>
+            <span class="step-label">Hoàn tất</span>
+          </div>
+        </div>
+
         <!-- Khi giỏ rỗng -->
         <div id="cart-empty-state" class="cart-empty cart-card" style="display: none;">
           <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 800;">Giỏ hàng đang trống</h2>
@@ -88,39 +111,221 @@
           <a href="/menu/" class="btn btn-primary">Khám Phá Thực Đơn Ngay</a>
         </div>
 
-        <!-- Khi có món -->
-        <div id="cart-summary-wrapper" class="cart-grid" style="display: none;">
-          <!-- Danh sách món -->
-          <div class="cart-card">
-            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem;">Danh Sách Món Đã Chọn</h2>
-            <div id="cart-items-container">
-              <!-- Rendered by cart.js -->
+        <!-- BƯỚC 1: GIỎ HÀNG & THÔNG TIN ĐẶT MÓN -->
+        <div id="cart-step-1" class="cart-grid" style="display: none;">
+          <div class="cart-main-col">
+            <!-- Danh sách món -->
+            <div class="cart-card" style="margin-bottom: 1.5rem;">
+              <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem;">Danh Sách Món Đã Chọn</h2>
+              <div id="cart-items-container">
+                <!-- Rendered by cart.js -->
+              </div>
+            </div>
+
+            <!-- Thông tin khách hàng & nhận hàng -->
+            <div class="cart-card">
+              <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem;">Thông Tin Nhận Món</h2>
+              <form id="order-customer-form" onsubmit="event.preventDefault(); proceedToPayment();">
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="cust-name">Họ và tên người nhận <span style="color:#d32f2f;">*</span></label>
+                    <input type="text" id="cust-name" class="form-control" placeholder="Họ và tên" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cust-phone">Số điện thoại <span style="color:#d32f2f;">*</span></label>
+                    <input type="tel" id="cust-phone" class="form-control" placeholder="Số điện thoại" required>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 1rem;">
+                  <label class="form-label">Phương thức nhận hàng <span style="color:#d32f2f;">*</span></label>
+                  <div class="delivery-options-grid">
+                    <label class="delivery-radio-card active">
+                      <input type="radio" name="delivery_type" value="delivery" checked onchange="toggleDeliveryType(this.value)">
+                      <div class="radio-content">
+                        <strong><i class="fa-solid fa-motorcycle"></i> Giao tận nơi</strong>
+                        <span>Phí ship 25.000₫ (Miễn phí từ 200k)</span>
+                      </div>
+                    </label>
+                    <label class="delivery-radio-card">
+                      <input type="radio" name="delivery_type" value="pickup" onchange="toggleDeliveryType(this.value)">
+                      <div class="radio-content">
+                        <strong><i class="fa-solid fa-store"></i> Nhận tại quầy bar Cáo Ngọt</strong>
+                        <span>128 Nguyễn Đình Chiểu, Q.3, TP.HCM</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group" id="delivery-address-group" style="margin-top: 1rem;">
+                  <label class="form-label" for="cust-address">Địa chỉ giao hàng <span style="color:#d32f2f;">*</span></label>
+                  <input type="text" id="cust-address" class="form-control" placeholder="Địa chỉ giao hàng">
+                </div>
+
+                <div class="form-group" style="margin-top: 1rem;">
+                  <label class="form-label" for="cust-note">Ghi chú cho Barista (tuỳ chọn)</label>
+                  <input type="text" id="cust-note" class="form-control" placeholder="Ghi chú thêm">
+                </div>
+              </form>
             </div>
           </div>
 
-          <!-- Tóm tắt thanh toán -->
-          <div class="cart-card" style="height: fit-content;">
-            <div class="summary-title">Tóm Tắt Đơn Hàng</div>
-            <div class="summary-row">
-              <span>Tạm tính:</span>
-              <strong id="cart-subtotal">0₫</strong>
+          <!-- Tóm tắt thanh toán & Nút tiến hành -->
+          <div class="cart-side-col">
+            <div class="cart-card sticky-summary">
+              <div class="summary-title">Tóm Tắt Đơn Hàng</div>
+              <div class="summary-row">
+                <span>Tạm tính:</span>
+                <strong id="cart-subtotal">0₫</strong>
+              </div>
+              <div class="summary-row">
+                <span>Phí vận chuyển:</span>
+                <span id="cart-shipping">0₫</span>
+              </div>
+              <div class="summary-row total-row">
+                <span>Tổng cộng:</span>
+                <span id="cart-total" style="color: #000000;">0₫</span>
+              </div>
+              <button type="button" id="btn-proceed-pay" class="btn btn-primary btn-block" style="margin-top: 1.5rem;" onclick="proceedToPayment()">
+                Tiến Hành Đặt Hàng <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
+              </button>
+              <div style="text-align: center; font-size: 0.8rem; color: #555555; margin-top: 0.75rem;">
+                <i class="fa-solid fa-shield-halved"></i> Thanh toán online bảo mật 100%
+              </div>
+              <a href="/menu/" class="btn btn-outline btn-block btn-sm" style="margin-top: 0.75rem;">
+                + Thêm món khác
+              </a>
             </div>
-            <div class="summary-row">
-              <span>Phí vận chuyển:</span>
-              <span id="cart-shipping">0₫</span>
-            </div>
-            <div class="summary-row total-row">
-              <span>Tổng cộng:</span>
-              <span id="cart-total" style="color: #000000;">0₫</span>
-            </div>
-            <button id="btn-checkout" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
-              Tiến Hành Đặt Hàng
-            </button>
-            <a href="/menu/" class="btn btn-outline btn-block btn-sm" style="margin-top: 0.75rem;">
-              + Thêm món khác
-            </a>
           </div>
         </div>
+
+        <!-- BƯỚC 2: BƯỚC THANH TOÁN (CHỈ ÁP DỤNG CÁC HÌNH THỨC THANH TOÁN ONLINE) -->
+        <div id="cart-step-2" class="payment-step-wrap" style="display: none;">
+          <div class="payment-grid">
+            <!-- Cột chọn phương thức thanh toán online -->
+            <div class="cart-card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                <h2 style="font-size: 1.3rem; font-weight: 800;">Chọn Hình Thức Thanh Toán Online</h2>
+                <span class="online-tag"><i class="fa-solid fa-globe"></i> 100% Online</span>
+              </div>
+
+              <div class="online-payment-notice">
+                <i class="fa-solid fa-circle-info"></i>
+                <div>
+                  <strong>Thông báo thanh toán website:</strong>
+                  Quán chỉ áp dụng các hình thức <strong>thanh toán trực tuyến (Online)</strong> để xác thực đơn hàng tự động và hỗ trợ chuẩn bị món nhanh chóng nhất.
+                </div>
+              </div>
+
+              <div class="payment-methods-list">
+                <!-- 1. VietQR Ngân Hàng -->
+                <label class="pay-method-card active" onclick="selectPaymentMethod('vietqr')">
+                  <input type="radio" name="online_pay_method" value="vietqr" checked>
+                  <div class="pay-method-icon"><i class="fa-solid fa-qrcode"></i></div>
+                  <div class="pay-method-info">
+                    <strong>Chuyển khoản QR Ngân Hàng (VietQR 24/7)</strong>
+                    <span>Quét mã qua app mọi ngân hàng (MB, VCB, Techcombank, ACB...)</span>
+                  </div>
+                  <span class="badge-recommended">Khuyên dùng</span>
+                </label>
+
+                <!-- 2. Ví MoMo -->
+                <label class="pay-method-card" onclick="selectPaymentMethod('momo')">
+                  <input type="radio" name="online_pay_method" value="momo">
+                  <div class="pay-method-icon" style="background: #a50064; color: #fff;"><i class="fa-solid fa-wallet"></i></div>
+                  <div class="pay-method-info">
+                    <strong>Ví điện tử MoMo</strong>
+                    <span>Quét mã MoMo QR hoặc chuyển nhanh tức thì</span>
+                  </div>
+                </label>
+
+                <!-- 3. Ví ZaloPay -->
+                <label class="pay-method-card" onclick="selectPaymentMethod('zalopay')">
+                  <input type="radio" name="online_pay_method" value="zalopay">
+                  <div class="pay-method-icon" style="background: #0068ff; color: #fff;"><i class="fa-solid fa-bolt"></i></div>
+                  <div class="pay-method-info">
+                    <strong>Ví điện tử ZaloPay</strong>
+                    <span>Thanh toán tiện lợi qua ứng dụng Zalo / ZaloPay</span>
+                  </div>
+                </label>
+
+                <!-- 4. Thẻ ATM / Visa / Master (VNPay Gateway) -->
+                <label class="pay-method-card" onclick="selectPaymentMethod('card')">
+                  <input type="radio" name="online_pay_method" value="card">
+                  <div class="pay-method-icon" style="background: #005baa; color: #fff;"><i class="fa-solid fa-credit-card"></i></div>
+                  <div class="pay-method-info">
+                    <strong>Thẻ ATM Nội Địa / Thẻ Visa, Mastercard</strong>
+                    <span>Cổng thanh toán điện tử bảo mật chuẩn PCI DSS</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Chi tiết thông tin chuyển khoản tương ứng -->
+              <div id="payment-details-box" class="payment-details-box">
+                <!-- Rendered dynamically by cart.js -->
+              </div>
+
+              <div class="payment-action-btns">
+                <button type="button" class="btn btn-outline" onclick="backToStep1()">
+                  <i class="fa-solid fa-arrow-left"></i> Quay lại sửa giỏ hàng
+                </button>
+                <button type="button" id="btn-confirm-payment" class="btn btn-primary" onclick="confirmOnlinePayment()">
+                  <i class="fa-solid fa-check-circle"></i> Tôi Đã Hoàn Tất Chuyển Khoản
+                </button>
+              </div>
+            </div>
+
+            <!-- Cột tóm tắt đơn thanh toán -->
+            <div class="cart-card" style="height: fit-content;">
+              <div class="summary-title">Thông Tin Đơn Hàng</div>
+              <div class="pay-summary-meta">
+                <div>Mã đơn hàng: <strong id="pay-order-code">CN-8492</strong></div>
+                <div>Khách hàng: <strong id="pay-cust-name">—</strong></div>
+                <div>Số điện thoại: <strong id="pay-cust-phone">—</strong></div>
+                <div>Hình thức nhận: <strong id="pay-delivery-label">Giao tận nơi</strong></div>
+              </div>
+              <div class="pay-summary-divider"></div>
+              <div class="summary-row">
+                <span>Tổng tiền thanh toán:</span>
+                <span id="pay-final-total" style="font-size: 1.4rem; font-weight: 800; color: #b84914;">0₫</span>
+              </div>
+              <div class="pay-secure-badge">
+                <i class="fa-solid fa-lock"></i> Hệ thống tự động xác nhận sau khi quét mã
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BƯỚC 3: HOÀN TẤT ĐẶT HÀNG & BIÊN LAI -->
+        <div id="cart-step-3" class="order-success-card cart-card" style="display: none;">
+          <div class="success-icon-wrap">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h2 class="success-title">Đặt Hàng & Thanh Toán Online Thành Công!</h2>
+          <p class="success-subtitle">
+            Cảm ơn bạn đã tin tưởng Cáo Ngọt. Barista tại 128 Nguyễn Đình Chiểu đang chuẩn bị thức uống cho bạn ngay lập tức!
+          </p>
+
+          <div class="order-receipt-card">
+            <div class="receipt-header">
+              <span class="receipt-logo">CÁO NGỌT COFFEE</span>
+              <span class="receipt-status-badge">ĐÃ THANH TOÁN ONLINE</span>
+            </div>
+            <div class="receipt-grid">
+              <div>Mã đơn hàng: <strong id="receipt-order-id">#CN8492</strong></div>
+              <div>Thời gian: <strong id="receipt-order-time">14/10/2026</strong></div>
+              <div>Người nhận: <strong id="receipt-cust-name">Khách hàng</strong></div>
+              <div>Phương thức: <strong id="receipt-pay-method">Chuyển khoản VietQR</strong></div>
+              <div style="grid-column: 1/-1;">Tổng tiền đã thanh toán: <strong id="receipt-total" style="color: #b84914; font-size: 1.15rem;">0₫</strong></div>
+            </div>
+          </div>
+
+          <div class="success-actions">
+            <a href="/home/" class="btn btn-outline">Trở Về Trang Chủ</a>
+            <a href="/menu/" class="btn btn-primary">Tiếp Tục Đặt Món Mới</a>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>

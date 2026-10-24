@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const menuItemSchema = new mongoose.Schema({
+  code: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   name: {
     type: String,
     required: [true, 'Tên món là bắt buộc'],
@@ -9,7 +14,6 @@ const menuItemSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, 'Danh mục là bắt buộc'],
-    enum: ['cà phê', 'espresso', 'phindi', 'trà sữa', 'bánh', 'combo bánh nước', 'combo'],
     lowercase: true,
     trim: true
   },

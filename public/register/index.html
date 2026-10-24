@@ -6,6 +6,11 @@
   <title>Đăng Ký Tài Khoản - Cáo Ngọt</title>
   <meta name="description" content="Đăng ký tài khoản thành viên Cáo Ngọt để nhận ưu đãi và trải nghiệm cà phê mộc nguyên chất.">
   
+  <!-- Google Fonts: Plus Jakarta Sans & Inter (Font không chân / Sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/shared/common.css">
   <link rel="stylesheet" href="/shared/navbar.css">
@@ -32,14 +37,14 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="/cart/" class="nav-text-btn" title="Giỏ hàng">
-          Giỏ hàng
+        <a href="/cart/" class="nav-icon-btn nav-cart-btn" title="Giỏ hàng" aria-label="Giỏ hàng">
+          <i class="fa-solid fa-bag-shopping"></i>
           <span class="cart-badge" style="display: none;">0</span>
         </a>
 
         <div class="user-menu-wrapper">
-          <button id="user-menu-btn" class="nav-text-btn" title="Tài khoản">
-            Tài khoản
+          <button id="user-menu-btn" class="nav-icon-btn nav-user-btn" title="Tài khoản khách hàng" aria-label="Tài khoản">
+            <i class="fa-solid fa-user"></i>
           </button>
           <div id="user-dropdown" class="user-dropdown"></div>
         </div>
@@ -83,17 +88,17 @@
         <form id="register-form">
           <div class="form-group">
             <label class="form-label" for="reg-phone">Số Điện Thoại</label>
-            <input type="tel" id="reg-phone" class="auth-input" placeholder="Ví dụ: 0909123456" maxlength="11" required>
+            <input type="tel" id="reg-phone" class="auth-input" placeholder="Số điện thoại" maxlength="11" required>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="reg-name">Họ và Tên</label>
-            <input type="text" id="reg-name" class="auth-input" placeholder="Ví dụ: Nguyễn Văn An" required>
+            <input type="text" id="reg-name" class="auth-input" placeholder="Họ và tên" required>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="reg-password">Mật khẩu</label>
-            <input type="password" id="reg-password" class="auth-input" placeholder="Tối thiểu 6 ký tự" required>
+            <input type="password" id="reg-password" class="auth-input" placeholder="Mật khẩu" required>
           </div>
 
           <div class="form-group">

@@ -17,11 +17,20 @@ let onlyBestseller = false;
 let currentModalItem = null;
 let currentModalSize = 'M';
 let currentModalQty = 1;
+let currentModalToppings = [];
 
 const SIZE_OPTIONS = [
-  { key: 'S', label: 'Size S (Nhỏ)', extra: 0 },
-  { key: 'M', label: 'Size M (Vừa)', extra: 6000 },
-  { key: 'L', label: 'Size L (Lớn)', extra: 12000 }
+  { key: 'S', label: 'Size S', extra: 0 },
+  { key: 'M', label: 'Size M', extra: 6000 },
+  { key: 'L', label: 'Size L', extra: 12000 }
+];
+
+const TOPPING_OPTIONS = [
+  { key: 'pearl_black', label: 'Trân châu đường đen', price: 5000 },
+  { key: 'pearl_white', label: 'Trân châu trắng 3Q', price: 5000 },
+  { key: 'pudding', label: 'Pudding trứng', price: 6000 },
+  { key: 'cheese_foam', label: 'Kem Macchiato Cheese', price: 10000 },
+  { key: 'full_topping', label: 'Full Topping (Đầy đủ loại)', price: 15000, isFull: true }
 ];
 
 function formatVND(num) {
@@ -94,22 +103,29 @@ function filterItems() {
   // 1. Lọc theo Nhóm sản phẩm lớn (Nước, Bánh, Combo Bánh Nước)
   if (currentProductGroup === 'drink') {
     list = list.filter(item => {
+      const group = (item.productGroup || '').toLowerCase().trim();
       const cat = (item.category || '').toLowerCase().trim();
-      return cat === 'cà phê' || cat === 'espresso' || cat === 'phindi' || cat === 'trà sữa';
+      if (group === 'nước') return true;
+      return cat !== 'bánh' && !cat.includes('bánh') && !cat.includes('combo');
     });
 
     if (currentCategory !== 'all') {
-      list = list.filter(item => (item.category || '').toLowerCase().trim() === currentCategory);
+      list = list.filter(item => {
+        const cat = (item.category || '').toLowerCase().trim();
+        return cat === currentCategory || cat.includes(currentCategory);
+      });
     }
   } else if (currentProductGroup === 'bakery') {
     list = list.filter(item => {
+      const group = (item.productGroup || '').toLowerCase().trim();
       const cat = (item.category || '').toLowerCase().trim();
-      return cat === 'bánh' || cat.includes('bánh');
+      return group === 'bánh' || cat === 'bánh' || cat.includes('bánh');
     });
   } else if (currentProductGroup === 'combo') {
     list = list.filter(item => {
+      const group = (item.productGroup || '').toLowerCase().trim();
       const cat = (item.category || '').toLowerCase().trim();
-      return cat.includes('combo');
+      return group === 'combo' || cat.includes('combo');
     });
   }
 
@@ -156,9 +172,9 @@ function renderMenuCards(animate = false) {
     const updatedTime = formatDateVN(item.updatedAt || item.createdAt);
 
     html += `
-      <div class="menu-card" data-category="${item.category}" data-id="${itemId}" onclick="openItemDetailModal('${itemId}')">
+      <div class="menu-card ${isBs ? 'is-bestseller-card' : ''}" data-category="${item.category}" data-id="${itemId}" onclick="openItemDetailModal('${itemId}')">
         <div class="menu-card-img-wrap">
-          <img src="${item.image || '/assets/images/drink_specialty.jpg'}" alt="${item.name}" loading="lazy">
+          <img src="${item.image || '/assets/images/home/home-bg.avif'}" alt="${item.name}" loading="lazy">
           ${isBs ? '<span class="card-bestseller-badge">Best seller</span>' : ''}
           ${!isAvailable ? '<span class="card-soldout-badge">Hết hàng</span>' : ''}
         </div>
@@ -209,6 +225,7 @@ function openItemDetailModal(itemId) {
   currentModalItem = item;
   currentModalSize = 'M';
   currentModalQty = 1;
+  currentModalToppings = [];
 
   renderItemDetailModal();
 
@@ -226,6 +243,7 @@ function closeItemDetailModal() {
     document.body.style.overflow = '';
   }
   currentModalItem = null;
+  currentModalToppings = [];
 }
 
 function updateModalQty(delta) {
@@ -244,12 +262,46 @@ function selectModalSize(sizeKey) {
   updateModalPriceDisplay();
 }
 
+function toggleModalTopping(toppingKey) {
+  if (toppingKey === 'full_topping') {
+    if (currentModalToppings.includes('full_topping')) {
+      currentModalToppings = [];
+    } else {
+      currentModalToppings = ['full_topping'];
+    }
+  } else {
+    // Nếu đang chọn full_topping mà bấm topping lẻ thì chuyển sang danh sách lẻ
+    currentModalToppings = currentModalToppings.filter(k => k !== 'full_topping');
+    const idx = currentModalToppings.indexOf(toppingKey);
+    if (idx > -1) {
+      currentModalToppings.splice(idx, 1);
+    } else {
+      currentModalToppings.push(toppingKey);
+    }
+  }
+
+  const chips = document.querySelectorAll('.modal-topping-chip');
+  chips.forEach(chip => {
+    const key = chip.getAttribute('data-topping');
+    chip.classList.toggle('active', currentModalToppings.includes(key));
+  });
+
+  updateModalPriceDisplay();
+}
+
 function calculateCurrentPrice() {
   if (!currentModalItem) return 0;
   const base = Number(currentModalItem.price) || 0;
   const sizeObj = SIZE_OPTIONS.find(s => s.key === currentModalSize);
   const extra = sizeObj ? sizeObj.extra : 0;
-  return (base + extra) * currentModalQty;
+
+  let toppingsExtra = 0;
+  currentModalToppings.forEach(tKey => {
+    const tObj = TOPPING_OPTIONS.find(t => t.key === tKey);
+    if (tObj) toppingsExtra += tObj.price;
+  });
+
+  return (base + extra + toppingsExtra) * currentModalQty;
 }
 
 function updateModalPriceDisplay() {
@@ -266,11 +318,19 @@ function renderItemDetailModal() {
   const item = currentModalItem;
   const isAvailable = item.status !== 'out_of_stock' && item.isAvailable !== false && item.inStock !== false;
   const isBs = !!item.isBestseller;
-  const isDrink = currentProductGroup === 'drink' || (item.category && ['cà phê', 'espresso', 'phindi', 'trà sữa'].includes(item.category.toLowerCase()));
+  const isDrink = currentProductGroup === 'drink' || (item.productGroup === 'nước') || (item.category && !item.category.includes('bánh') && !item.category.includes('combo'));
+  const isMilkTea = isDrink && item.category && (
+    item.category.toLowerCase().includes('trà sữa') ||
+    item.category.toLowerCase().includes('tra sua') ||
+    item.name.toLowerCase().includes('trà sữa') ||
+    item.name.toLowerCase().includes('tra sua')
+  );
+
+  const basePrice = Number(item.price) || 0;
 
   content.innerHTML = `
     <div class="modal-detail-img-wrap">
-      <img src="${item.image || '/assets/images/drink_specialty.jpg'}" alt="${item.name}">
+      <img src="${item.image || '/assets/images/home/home-bg.avif'}" alt="${item.name}">
       ${isBs ? '<span class="modal-bestseller-badge">Best seller</span>' : ''}
     </div>
 
@@ -278,7 +338,9 @@ function renderItemDetailModal() {
       <div class="modal-detail-header">
         <div class="modal-title-group">
           <h2 class="modal-detail-title">${item.name}</h2>
-          <span class="modal-detail-cat">${item.category || 'Món đặc trưng'}</span>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 4px;">
+            <span class="modal-detail-cat">${item.category || 'Món đặc trưng'}</span>
+          </div>
         </div>
         <div class="modal-stock-status ${isAvailable ? 'in-stock' : 'out-of-stock'}">
           <i class="fa-solid ${isAvailable ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
@@ -288,15 +350,39 @@ function renderItemDetailModal() {
 
       ${item.description ? `<p class="modal-detail-desc">${item.description}</p>` : ''}
 
-      <!-- Chọn kích cỡ (Size) -->
+      <!-- Chọn kích cỡ (Size S, M, L hiển thị giá chuẩn, không dùng dấu +) -->
       ${isDrink ? `
         <div class="modal-section">
           <label class="modal-section-title">Chọn kích cỡ (Size):</label>
           <div class="modal-sizes-grid">
-            ${SIZE_OPTIONS.map(opt => `
-              <button type="button" class="modal-size-chip ${currentModalSize === opt.key ? 'active' : ''}" data-size="${opt.key}" onclick="selectModalSize('${opt.key}')">
-                <span class="size-name">${opt.label}</span>
-                <span class="size-extra">${opt.extra > 0 ? `+${formatVND(opt.extra)}` : 'Tiêu chuẩn'}</span>
+            ${SIZE_OPTIONS.map(opt => {
+              const fullPrice = basePrice + opt.extra;
+              return `
+                <button type="button" class="modal-size-chip ${currentModalSize === opt.key ? 'active' : ''}" data-size="${opt.key}" onclick="selectModalSize('${opt.key}')">
+                  <span class="size-name">${opt.label}</span>
+                  <span class="size-price">${formatVND(fullPrice)}</span>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Chọn Topping & Full Topping (dành cho phần Trà Sữa) -->
+      ${isMilkTea ? `
+        <div class="modal-section">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <label class="modal-section-title">Chọn Topping:</label>
+            <span style="font-size: 0.75rem; color: #666;">(Có thể chọn nhiều)</span>
+          </div>
+          <div class="modal-toppings-grid">
+            ${TOPPING_OPTIONS.map(top => `
+              <button type="button" 
+                class="modal-topping-chip ${top.isFull ? 'full-topping-chip' : ''} ${currentModalToppings.includes(top.key) ? 'active' : ''}" 
+                data-topping="${top.key}" 
+                onclick="toggleModalTopping('${top.key}')">
+                <span class="topping-name">${top.label}</span>
+                <span class="topping-price">${formatVND(top.price)}</span>
               </button>
             `).join('')}
           </div>
@@ -316,7 +402,7 @@ function renderItemDetailModal() {
       <!-- Thêm ghi chú -->
       <div class="modal-section">
         <label for="modal-item-note" class="modal-section-title">Thêm ghi chú cho quán:</label>
-        <textarea id="modal-item-note" class="modal-note-input" rows="2" placeholder="Ví dụ: Ít đá, 50% ngọt, ấm nóng, không lấy ống hút nhựa..."></textarea>
+        <textarea id="modal-item-note" class="modal-note-input" rows="2" placeholder="Ghi chú thêm"></textarea>
       </div>
 
       <!-- Tổng tiền tạm tính -->
@@ -349,21 +435,44 @@ function getModalPayload() {
   const noteEl = document.getElementById('modal-item-note');
   const note = noteEl ? noteEl.value.trim() : '';
   const sizeObj = SIZE_OPTIONS.find(s => s.key === currentModalSize);
-  const extra = sizeObj ? sizeObj.extra : 0;
-  const unitPrice = (Number(currentModalItem.price) || 0) + extra;
-  const itemId = currentModalItem._id || currentModalItem.id;
+  const sizeExtra = sizeObj ? sizeObj.extra : 0;
 
-  const isDrink = currentProductGroup === 'drink' || (currentModalItem.category && ['cà phê', 'espresso', 'phindi', 'trà sữa'].includes(currentModalItem.category.toLowerCase()));
+  let toppingsExtra = 0;
+  const toppingNames = [];
+  currentModalToppings.forEach(tKey => {
+    const tObj = TOPPING_OPTIONS.find(t => t.key === tKey);
+    if (tObj) {
+      toppingsExtra += tObj.price;
+      toppingNames.push(tObj.label);
+    }
+  });
+
+  const unitPrice = (Number(currentModalItem.price) || 0) + sizeExtra + toppingsExtra;
+  const itemId = currentModalItem._id || currentModalItem.id;
+  const isDrink = currentProductGroup === 'drink' || (currentModalItem.productGroup === 'nước') || (currentModalItem.category && !currentModalItem.category.includes('bánh') && !currentModalItem.category.includes('combo'));
+
+  const toppingKeyPart = currentModalToppings.length ? `_${currentModalToppings.slice().sort().join('-')}` : '';
+  const cartKey = isDrink ? `${itemId}_${currentModalSize}${toppingKeyPart}` : itemId;
+
+  let displayName = currentModalItem.name;
+  if (isDrink) {
+    displayName += ` (${currentModalSize}`;
+    if (toppingNames.length > 0) {
+      displayName += ` • ${toppingNames.join(', ')}`;
+    }
+    displayName += `)`;
+  }
 
   return {
     id: itemId,
-    cartKey: isDrink ? `${itemId}_${currentModalSize}` : itemId,
-    name: isDrink ? `${currentModalItem.name} (${currentModalSize})` : currentModalItem.name,
+    cartKey: cartKey,
+    name: displayName,
     price: unitPrice,
     size: isDrink ? currentModalSize : '',
+    toppings: toppingNames.join(', '),
     note: note,
     quantity: currentModalQty,
-    image: currentModalItem.image || '/assets/images/drink_specialty.jpg'
+    image: currentModalItem.image || '/assets/images/home/home-bg.avif'
   };
 }
 

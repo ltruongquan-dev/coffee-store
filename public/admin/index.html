@@ -6,6 +6,11 @@
   <title>Quản Trị Thực Đơn - Cáo Ngọt</title>
   <meta name="description" content="Khu vực quản trị thực đơn Cáo Ngọt: thêm món, cập nhật bestseller, ghi nhận người cập nhật, thời gian cập nhật vào Database.">
   
+  <!-- Google Fonts: Plus Jakarta Sans & Inter (Font không chân / Sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/shared/common.css">
   <link rel="stylesheet" href="/shared/navbar.css">
@@ -35,14 +40,14 @@
 
       <!-- 3. Giỏ Hàng và User -->
       <div class="nav-actions">
-        <a href="/cart/" class="nav-text-btn" title="Giỏ hàng">
-          Giỏ hàng
+        <a href="/cart/" class="nav-icon-btn nav-cart-btn" title="Giỏ hàng" aria-label="Giỏ hàng">
+          <i class="fa-solid fa-bag-shopping"></i>
           <span class="cart-badge" style="display: none;">0</span>
         </a>
 
         <div class="user-menu-wrapper">
-          <button id="user-menu-btn" class="nav-text-btn" title="Tài khoản">
-            Tài khoản
+          <button id="user-menu-btn" class="nav-icon-btn nav-user-btn" title="Tài khoản khách hàng" aria-label="Tài khoản">
+            <i class="fa-solid fa-user"></i>
           </button>
           <div id="user-dropdown" class="user-dropdown"></div>
         </div>
@@ -120,14 +125,14 @@
             <!-- 1. Tên người quản trị thực hiện -->
             <div class="form-group">
               <label class="form-label" for="form-admin-name">Người thực hiện (Admin Name)</label>
-              <input type="text" id="form-admin-name" class="form-input" value="Admin Quản Trị" placeholder="Nhập tên người cập nhật" required>
+              <input type="text" id="form-admin-name" class="form-input" value="Admin Quản Trị" placeholder="Tên người quản trị" required>
               <small style="color: #000000; font-size: 0.75rem;">Lưu vào trường updatedBy trong Database</small>
             </div>
 
             <!-- 2. Tên món -->
             <div class="form-group">
               <label class="form-label" for="form-item-name">Tên Món Ăn / Thức Uống</label>
-              <input type="text" id="form-item-name" class="form-input" placeholder="Ví dụ: Cà Phê Muối Hoàng Gia" required>
+              <input type="text" id="form-item-name" class="form-input" placeholder="Tên món" required>
             </div>
 
             <!-- 3. Danh mục (4 nhóm: cà phê, espresso, phindi, trà sữa) -->
@@ -144,13 +149,13 @@
             <!-- 4. Giá món (VND) -->
             <div class="form-group">
               <label class="form-label" for="form-item-price">Giá Món (VNĐ)</label>
-              <input type="number" id="form-item-price" class="form-input" placeholder="Ví dụ: 45000" min="0" step="1000" required>
+              <input type="number" id="form-item-price" class="form-input" placeholder="Giá món" min="0" step="1000" required>
             </div>
 
             <!-- 5. Mô tả món -->
             <div class="form-group">
               <label class="form-label" for="form-item-desc">Mô Tả</label>
-              <textarea id="form-item-desc" class="form-textarea" rows="3" placeholder="Mô tả ngắn gọn về món..."></textarea>
+              <textarea id="form-item-desc" class="form-textarea" rows="3" placeholder="Mô tả món"></textarea>
             </div>
 
             <!-- 6. Đường dẫn ảnh -->

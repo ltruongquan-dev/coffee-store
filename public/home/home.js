@@ -31,7 +31,7 @@ async function loadBestsellerItems() {
         <div class="bestseller-card">
           <div class="bestseller-card-img">
             <span class="bestseller-badge-tag">🔥 Bestseller</span>
-            <img src="${item.image || '/assets/images/drink_specialty.jpg'}" alt="${item.name}">
+            <img src="${item.image || '/assets/images/home/home-bg.avif'}" alt="${item.name}">
           </div>
           <div class="bestseller-card-body">
             <span class="bestseller-card-category">${item.category}</span>

@@ -168,3 +168,584 @@
   font-size: 1.2rem;
   font-weight: 900;
 }
+
+/* ==========================================================================
+   MULTI-STEP CHECKOUT & ONLINE PAYMENT STYLES
+   ========================================================================== */
+
+/* 1. Progress Steps Bar */
+.checkout-steps-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-border);
+  box-shadow: var(--shadow-sm);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888888;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #888888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.step-item.active {
+  color: #000000;
+}
+
+.step-item.active .step-num {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.step-item.completed {
+  color: #2e7d32;
+}
+
+.step-item.completed .step-num {
+  background: #2e7d32;
+  color: #ffffff;
+  border-color: #2e7d32;
+}
+
+.step-divider {
+  flex: 1;
+  height: 2px;
+  background: #e0e0e0;
+  margin: 0 1rem;
+  min-width: 24px;
+}
+
+/* 2. Customer Form & Delivery Options */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .form-row-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #000000;
+  background: #ffffff;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.delivery-options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .delivery-options-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.delivery-radio-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  background: #fafafa;
+  transition: var(--transition);
+}
+
+.delivery-radio-card:hover {
+  background: #ffffff;
+  border-color: #888888;
+}
+
+.delivery-radio-card.active {
+  border-color: #000000;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.delivery-radio-card input {
+  accent-color: #000000;
+  width: 18px;
+  height: 18px;
+}
+
+.radio-content strong {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 2px;
+}
+
+.radio-content span {
+  display: block;
+  font-size: 0.8rem;
+  color: #666666;
+}
+
+/* 3. Online Payment Step (Step 2) */
+.payment-step-wrap {
+  width: 100%;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 992px) {
+  .payment-grid {
+    grid-template-columns: 1.8fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.online-tag {
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #c8e6c9;
+}
+
+.online-payment-notice {
+  background: #fff8f6;
+  border: 1px solid #ffd8cc;
+  border-left: 4px solid #b84914;
+  padding: 0.9rem 1.15rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: #4a2817;
+  line-height: 1.5;
+}
+
+.online-payment-notice i {
+  color: #b84914;
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+.payment-methods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.75rem;
+}
+
+.pay-method-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 1rem 1.25rem;
+  border: 1.5px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+}
+
+.pay-method-card:hover {
+  border-color: #888888;
+  background: #fafafa;
+}
+
+.pay-method-card.active {
+  border-color: #000000;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pay-method-card input {
+  accent-color: #000000;
+  width: 18px;
+  height: 18px;
+}
+
+.pay-method-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.pay-method-info {
+  flex: 1;
+}
+
+.pay-method-info strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 2px;
+}
+
+.pay-method-info span {
+  display: block;
+  font-size: 0.82rem;
+  color: #666666;
+}
+
+.badge-recommended {
+  background: #d32f2f;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+/* 4. Payment Details Box (QR Code Card) */
+.payment-details-box {
+  background: #fbfbfb;
+  border: 1.5px solid var(--gray-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.qr-payment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 680px) {
+  .qr-payment-card {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+}
+
+.qr-frame {
+  position: relative;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.qr-frame img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  display: block;
+  border-radius: 6px;
+}
+
+.qr-scan-badge {
+  background: #000000;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.bank-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.bank-detail-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.bank-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+@media (min-width: 480px) {
+  .bank-detail-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.bank-detail-row .label {
+  font-size: 0.88rem;
+  color: #666666;
+}
+
+.bank-detail-row .value {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+}
+
+.bank-detail-row .highlight-text {
+  font-family: monospace;
+  font-size: 1.05rem;
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bank-detail-row .price-highlight {
+  font-size: 1.25rem;
+  color: #b84914;
+  font-weight: 900;
+}
+
+.btn-copy-small {
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-copy-small:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.qr-help-text {
+  font-size: 0.85rem;
+  color: #555555;
+  line-height: 1.5;
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px dashed var(--gray-border);
+}
+
+.payment-action-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .payment-action-btns {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.card-brands-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.card-brand-badge {
+  background: #ffffff;
+  border: 1px solid var(--gray-border);
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #000000;
+}
+
+.card-mock-form {
+  background: #ffffff;
+  border: 1px solid var(--gray-border);
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+}
+
+.pay-summary-meta {
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #333333;
+}
+
+.pay-summary-divider {
+  height: 1px;
+  background: var(--gray-border);
+  margin: 1rem 0;
+}
+
+.pay-secure-badge {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #2e7d32;
+  font-weight: 600;
+  margin-top: 1rem;
+  padding: 0.6rem;
+  background: #e8f5e9;
+  border-radius: var(--radius-sm);
+}
+
+/* 5. Order Success Step (Step 3) */
+.order-success-card {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.success-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+}
+
+.success-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 0.75rem;
+}
+
+.success-subtitle {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 2rem auto;
+}
+
+.order-receipt-card {
+  background: #fafafa;
+  border: 1.5px dashed var(--gray-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.receipt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.receipt-logo {
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.receipt-status-badge {
+  background: #2e7d32;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.receipt-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: #333333;
+}
+
+@media (min-width: 480px) {
+  .receipt-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.success-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
