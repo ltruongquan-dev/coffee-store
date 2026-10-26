@@ -31,7 +31,7 @@
   --primary-light: #e5e5e5;
   
   /* Typography: 100% Thống nhất dùng Font không chân (Plus Jakarta Sans) cho toàn bộ website */
-  --font-base: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-base: "Times New Roman", Times, serif;
   --font-sans: var(--font-base);
   --font-serif: var(--font-base);
   --font-heading: var(--font-base);
