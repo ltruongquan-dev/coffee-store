@@ -7,6 +7,25 @@
  * - Modal chi tiết món: Chọn size (S/M/L), tăng giảm số lượng (+/-),
  *   tình trạng còn hàng / hết hàng, thêm ghi chú, nút Thêm vào giỏ và Mua ngay.
  */
+// Kiểm tra món có áp dụng phụ thu kích cỡ hay không.
+function hasSize(item) {
+  if (!item) return false;
+
+  const group = (item.productGroup || '').toLowerCase().trim();
+  const category = (item.category || '').toLowerCase().trim();
+
+  // Bánh và combo giữ nguyên giá, không cộng phụ thu size.
+  if (
+    group === 'bánh' ||
+    group === 'combo' ||
+    category.includes('bánh') ||
+    category.includes('combo')
+  ) {
+    return false;
+  }
+
+  return group === 'nước' || category !== '';
+}
 
 let allMenuItems = [];
 let currentProductGroup = 'drink'; // 'drink' | 'bakery' | 'combo'
@@ -292,7 +311,9 @@ function toggleModalTopping(toppingKey) {
 function calculateCurrentPrice() {
   if (!currentModalItem) return 0;
   const base = Number(currentModalItem.price) || 0;
-  const sizeObj = SIZE_OPTIONS.find(s => s.key === currentModalSize);
+  const sizeObj = hasSize(currentModalItem)
+  ? SIZE_OPTIONS.find(s => s.key === currentModalSize)
+  : null;
   const extra = sizeObj ? sizeObj.extra : 0;
 
   let toppingsExtra = 0;
@@ -434,7 +455,9 @@ function getModalPayload() {
   if (!currentModalItem) return null;
   const noteEl = document.getElementById('modal-item-note');
   const note = noteEl ? noteEl.value.trim() : '';
-  const sizeObj = SIZE_OPTIONS.find(s => s.key === currentModalSize);
+  const sizeObj = hasSize(currentModalItem)
+  ? SIZE_OPTIONS.find(s => s.key === currentModalSize)
+  : null;
   const sizeExtra = sizeObj ? sizeObj.extra : 0;
 
   let toppingsExtra = 0;
