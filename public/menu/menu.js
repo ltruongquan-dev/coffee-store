@@ -1,5 +1,5 @@
 /**
- * CÁO NGỌT - MENU PAGE SCRIPT (MOBILE-FIRST)
+ * FOXTAIL - MENU PAGE SCRIPT (MOBILE-FIRST)
  * - Tối ưu tốc độ tải dữ liệu (in-memory & session cache, lean queries)
  * - Trạng thái tải: "Đang tải..."
  * - Thẻ món: Bỏ like/số like, bỏ nút giỏ hàng và mua ngay

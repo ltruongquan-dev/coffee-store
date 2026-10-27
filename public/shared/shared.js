@@ -1,5 +1,5 @@
 /**
- * CÁO NGỌT - SHARED SCRIPT
+ * FOXTAIL - SHARED SCRIPT
  * Quản lý Drawer di động, Giỏ hàng, Auth, Thông báo Toast, Phân quyền Admin
  */
 
@@ -47,7 +47,7 @@ function showSmsNotificationModal(phone, otpCode, onAutoFill) {
         </div>
       </div>
       <div class="sms-bubble">
-        <p style="margin-bottom: 6px; font-weight: 600;">[CÁO NGỌT] Mã xác thực đăng ký tài khoản của bạn là:</p>
+        <p style="margin-bottom: 6px; font-weight: 600;">[FOXTAIL] Mã xác thực đăng ký tài khoản của bạn là:</p>
         <div class="sms-code-highlight">${otpCode}</div>
         <p style="font-size: 0.8rem; color: #000000; font-weight: 400; margin-top: 4px;">Mã có hiệu lực trong 5 phút. Vui lòng không chia sẻ mã này.</p>
       </div>
