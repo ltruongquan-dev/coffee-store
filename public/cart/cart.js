@@ -1,5 +1,5 @@
 /**
- * CÁO NGỌT - CART & ONLINE PAYMENT PROCESS SCRIPT
+ * FOXTAIL - CART & ONLINE PAYMENT PROCESS SCRIPT
  * Multi-Step Checkout:
  * - Bước 1: Giỏ hàng & Điền thông tin giao/nhận hàng
  * - Bước 2: Bước Thanh Toán Online (VietQR 24/7, MoMo, ZaloPay, Thẻ ATM/Visa)
@@ -199,7 +199,7 @@ function proceedToPayment() {
     orderCode,
     custName,
     custPhone,
-    custAddress: currentDeliveryType === 'pickup' ? 'Nhận tại quầy bar Cáo Ngọt' : custAddress,
+    custAddress: currentDeliveryType === 'pickup' ? 'Nhận tại quầy bar FOXTAIL' : custAddress,
     deliveryType: currentDeliveryType,
     custNote,
     subtotal,
@@ -267,7 +267,7 @@ function selectPaymentMethod(method) {
   if (!detailsBox || !currentOrderData) return;
 
   const totalAmount = currentOrderData.total;
-  const transferMsg = `CAONGOT ${currentOrderData.orderCode}`;
+  const transferMsg = `FOXTAIL ${currentOrderData.orderCode}`;
 
   if (method === 'vietqr') {
     // VietQR Ngân hàng MB Bank 24/7
@@ -277,7 +277,7 @@ function selectPaymentMethod(method) {
       <div class="qr-payment-card">
         <div class="qr-col">
           <div class="qr-frame">
-            <img src="${qrUrl}" alt="Mã VietQR thanh toán Cáo Ngọt" onerror="this.src='/assets/images/logo.png'">
+            <img src="${qrUrl}" alt="Mã VietQR thanh toán FOXTAIL" onerror="this.src='/assets/images/logo.png'">
             <div class="qr-scan-badge"><i class="fa-solid fa-camera"></i> Quét mã để thanh toán</div>
           </div>
         </div>
@@ -286,7 +286,7 @@ function selectPaymentMethod(method) {
           <div class="bank-detail-rows">
             <div class="bank-detail-row">
               <span class="label">Chủ tài khoản:</span>
-              <strong class="value">CAO NGOT COFFEE</strong>
+              <strong class="value">FOXTAIL COFFEE</strong>
             </div>
             <div class="bank-detail-row">
               <span class="label">Số tài khoản:</span>
@@ -328,7 +328,7 @@ function selectPaymentMethod(method) {
           <div class="bank-detail-rows">
             <div class="bank-detail-row">
               <span class="label">Người nhận:</span>
-              <strong class="value">Cáo Ngọt Cafe (0909 123 456)</strong>
+              <strong class="value">FOXTAIL Cafe (0909 123 456)</strong>
             </div>
             <div class="bank-detail-row">
               <span class="label">Số tiền thanh toán:</span>
@@ -363,7 +363,7 @@ function selectPaymentMethod(method) {
           <div class="bank-detail-rows">
             <div class="bank-detail-row">
               <span class="label">Tài khoản ZaloPay:</span>
-              <strong class="value">0909 123 456 (Cáo Ngọt Vietnam)</strong>
+              <strong class="value">0909 123 456 (FOXTAIL Vietnam)</strong>
             </div>
             <div class="bank-detail-row">
               <span class="label">Số tiền thanh toán:</span>
