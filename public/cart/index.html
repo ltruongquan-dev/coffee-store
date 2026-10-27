@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giỏ Hàng - Cáo Ngọt</title>
   <meta name="description" content="Xem và quản lý các món nước, món ăn và hạt cà phê đã chọn tại Cáo Ngọt.">
-  
+
   <!-- Google Fonts: Noto Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+    integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/shared/common.css">
   <link rel="stylesheet" href="/shared/navbar.css">
   <link rel="stylesheet" href="/shared/footer.css">
   <link rel="stylesheet" href="/cart/cart.css">
 </head>
+
 <body>
 
   <!-- NAVBAR -->
@@ -37,13 +42,15 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="/cart/" class="nav-icon-btn nav-cart-btn" title="Giỏ hàng" aria-label="Giỏ hàng" style="background: #000000; color: #ffffff;">
+        <a href="/cart/" class="nav-icon-btn nav-cart-btn" title="Giỏ hàng" aria-label="Giỏ hàng"
+          style="background: #000000; color: #ffffff;">
           <i class="fa-solid fa-bag-shopping"></i>
           <span class="cart-badge" style="display: none; background: #d32f2f; color: #ffffff;">0</span>
         </a>
 
         <div class="user-menu-wrapper">
-          <button id="user-menu-btn" class="nav-icon-btn nav-user-btn" title="Tài khoản khách hàng" aria-label="Tài khoản">
+          <button id="user-menu-btn" class="nav-icon-btn nav-user-btn" title="Tài khoản khách hàng"
+            aria-label="Tài khoản">
             <i class="fa-solid fa-user"></i>
           </button>
           <div id="user-dropdown" class="user-dropdown"></div>
@@ -62,7 +69,8 @@
     <div>
       <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
         <img src="/assets/images/logo.png" alt="Cáo Ngọt" style="height: 38px; width: auto; object-fit: contain;">
-        <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #000000;">CÁO NGỌT</span>
+        <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #000000;">CÁO
+          NGỌT</span>
       </div>
       <ul class="mobile-menu-links">
         <li><a href="/coffee/" class="mobile-nav-link">Hạt Cà Phê</a></li>
@@ -80,7 +88,7 @@
     <section class="cart-hero">
       <div class="container">
         <h1>Giỏ Hàng Của Bạn</h1>
-        <p>Kiểm tra danh sách thức uống và hạt cà phê trước khi đặt món.</p>
+        <p>Kiểm tra giỏ hàng trước khi đặt món.</p>
       </div>
     </section>
 
@@ -128,11 +136,13 @@
               <form id="order-customer-form" onsubmit="event.preventDefault(); proceedToPayment();">
                 <div class="form-row-2">
                   <div class="form-group">
-                    <label class="form-label" for="cust-name">Họ và tên người nhận <span style="color:#d32f2f;">*</span></label>
+                    <label class="form-label" for="cust-name">Họ và tên người nhận <span
+                        style="color:#d32f2f;">*</span></label>
                     <input type="text" id="cust-name" class="form-control" placeholder="Họ và tên" required>
                   </div>
                   <div class="form-group">
-                    <label class="form-label" for="cust-phone">Số điện thoại <span style="color:#d32f2f;">*</span></label>
+                    <label class="form-label" for="cust-phone">Số điện thoại <span
+                        style="color:#d32f2f;">*</span></label>
                     <input type="tel" id="cust-phone" class="form-control" placeholder="Số điện thoại" required>
                   </div>
                 </div>
@@ -141,7 +151,8 @@
                   <label class="form-label">Phương thức nhận hàng <span style="color:#d32f2f;">*</span></label>
                   <div class="delivery-options-grid">
                     <label class="delivery-radio-card active">
-                      <input type="radio" name="delivery_type" value="delivery" checked onchange="toggleDeliveryType(this.value)">
+                      <input type="radio" name="delivery_type" value="delivery" checked
+                        onchange="toggleDeliveryType(this.value)">
                       <div class="radio-content">
                         <strong><i class="fa-solid fa-motorcycle"></i> Giao tận nơi</strong>
                         <span>Phí ship 25.000₫ (Miễn phí từ 200k)</span>
@@ -158,12 +169,13 @@
                 </div>
 
                 <div class="form-group" id="delivery-address-group" style="margin-top: 1rem;">
-                  <label class="form-label" for="cust-address">Địa chỉ giao hàng <span style="color:#d32f2f;">*</span></label>
+                  <label class="form-label" for="cust-address">Địa chỉ giao hàng <span
+                      style="color:#d32f2f;">*</span></label>
                   <input type="text" id="cust-address" class="form-control" placeholder="Địa chỉ giao hàng">
                 </div>
 
                 <div class="form-group" style="margin-top: 1rem;">
-                  <label class="form-label" for="cust-note">Ghi chú cho Barista (tuỳ chọn)</label>
+                  <label class="form-label" for="cust-note">Ghi chú</label>
                   <input type="text" id="cust-note" class="form-control" placeholder="Ghi chú thêm">
                 </div>
               </form>
@@ -186,11 +198,12 @@
                 <span>Tổng cộng:</span>
                 <span id="cart-total" style="color: #000000;">0₫</span>
               </div>
-              <button type="button" id="btn-proceed-pay" class="btn btn-primary btn-block" style="margin-top: 1.5rem;" onclick="proceedToPayment()">
+              <button type="button" id="btn-proceed-pay" class="btn btn-primary btn-block" style="margin-top: 1.5rem;"
+                onclick="proceedToPayment()">
                 Tiến Hành Đặt Hàng <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
               </button>
-              <div style="text-align: center; font-size: 0.8rem; color: #555555; margin-top: 0.75rem;">
-                <i class="fa-solid fa-shield-halved"></i> Thanh toán online bảo mật 100%
+              <div>
+
               </div>
               <a href="/menu/" class="btn btn-outline btn-block btn-sm" style="margin-top: 0.75rem;">
                 + Thêm món khác
@@ -213,7 +226,8 @@
                 <i class="fa-solid fa-circle-info"></i>
                 <div>
                   <strong>Thông báo thanh toán website:</strong>
-                  Quán chỉ áp dụng các hình thức <strong>thanh toán trực tuyến (Online)</strong> để xác thực đơn hàng tự động và hỗ trợ chuẩn bị món nhanh chóng nhất.
+                  Quán chỉ áp dụng các hình thức <strong>thanh toán trực tuyến (Online)</strong> để xác thực đơn hàng tự
+                  động và hỗ trợ chuẩn bị món nhanh chóng nhất.
                 </div>
               </div>
 
@@ -232,7 +246,8 @@
                 <!-- 2. Ví MoMo -->
                 <label class="pay-method-card" onclick="selectPaymentMethod('momo')">
                   <input type="radio" name="online_pay_method" value="momo">
-                  <div class="pay-method-icon" style="background: #a50064; color: #fff;"><i class="fa-solid fa-wallet"></i></div>
+                  <div class="pay-method-icon" style="background: #a50064; color: #fff;"><i
+                      class="fa-solid fa-wallet"></i></div>
                   <div class="pay-method-info">
                     <strong>Ví điện tử MoMo</strong>
                     <span>Quét mã MoMo QR hoặc chuyển nhanh tức thì</span>
@@ -242,7 +257,8 @@
                 <!-- 3. Ví ZaloPay -->
                 <label class="pay-method-card" onclick="selectPaymentMethod('zalopay')">
                   <input type="radio" name="online_pay_method" value="zalopay">
-                  <div class="pay-method-icon" style="background: #0068ff; color: #fff;"><i class="fa-solid fa-bolt"></i></div>
+                  <div class="pay-method-icon" style="background: #0068ff; color: #fff;"><i
+                      class="fa-solid fa-bolt"></i></div>
                   <div class="pay-method-info">
                     <strong>Ví điện tử ZaloPay</strong>
                     <span>Thanh toán tiện lợi qua ứng dụng Zalo / ZaloPay</span>
@@ -252,7 +268,8 @@
                 <!-- 4. Thẻ ATM / Visa / Master (VNPay Gateway) -->
                 <label class="pay-method-card" onclick="selectPaymentMethod('card')">
                   <input type="radio" name="online_pay_method" value="card">
-                  <div class="pay-method-icon" style="background: #005baa; color: #fff;"><i class="fa-solid fa-credit-card"></i></div>
+                  <div class="pay-method-icon" style="background: #005baa; color: #fff;"><i
+                      class="fa-solid fa-credit-card"></i></div>
                   <div class="pay-method-info">
                     <strong>Thẻ ATM Nội Địa / Thẻ Visa, Mastercard</strong>
                     <span>Cổng thanh toán điện tử bảo mật chuẩn PCI DSS</span>
@@ -303,7 +320,8 @@
           </div>
           <h2 class="success-title">Đặt Hàng & Thanh Toán Online Thành Công!</h2>
           <p class="success-subtitle">
-            Cảm ơn bạn đã tin tưởng Cáo Ngọt. Barista tại 128 Nguyễn Đình Chiểu đang chuẩn bị thức uống cho bạn ngay lập tức!
+            Cảm ơn bạn đã tin tưởng Cáo Ngọt. Barista tại 128 Nguyễn Đình Chiểu đang chuẩn bị thức uống cho bạn ngay lập
+            tức!
           </p>
 
           <div class="order-receipt-card">
@@ -316,7 +334,8 @@
               <div>Thời gian: <strong id="receipt-order-time">14/10/2026</strong></div>
               <div>Người nhận: <strong id="receipt-cust-name">Khách hàng</strong></div>
               <div>Phương thức: <strong id="receipt-pay-method">Chuyển khoản VietQR</strong></div>
-              <div style="grid-column: 1/-1;">Tổng tiền đã thanh toán: <strong id="receipt-total" style="color: #b84914; font-size: 1.15rem;">0₫</strong></div>
+              <div style="grid-column: 1/-1;">Tổng tiền đã thanh toán: <strong id="receipt-total"
+                  style="color: #b84914; font-size: 1.15rem;">0₫</strong></div>
             </div>
           </div>
 
@@ -342,12 +361,16 @@
             </div>
           </a>
           <p class="footer-desc">
-            Không gian trải nghiệm cà phê mộc thủ công nguyên chất, trà sữa thượng hạng và các món ăn nhẹ tươi mới mỗi ngày.
+            Không gian trải nghiệm cà phê mộc thủ công nguyên chất, trà sữa thượng hạng và các món ăn nhẹ tươi mới mỗi
+            ngày.
           </p>
           <div class="footer-socials">
-            <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook"><i class="fa-brands fa-square-facebook"></i></a>
-            <a href="https://twitter.com" target="_blank" class="social-link" title="X"><i class="fa-brands fa-square-x-twitter"></i></a>
-            <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+            <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook"><i
+                class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-link" title="X"><i
+                class="fa-brands fa-square-x-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram"><i
+                class="fa-brands fa-square-instagram"></i></a>
           </div>
         </div>
 
@@ -397,7 +420,6 @@
 
       <div class="footer-bottom">
         <div>© 2026 Cáo Ngọt Vietnam. Bảo lưu mọi quyền.</div>
-        <div>Tone Xám Nhạt • Chữ Đen • Tối Giản Hiện Đại</div>
       </div>
     </div>
   </footer>
@@ -405,4 +427,5 @@
   <script src="/shared/shared.js"></script>
   <script src="/cart/cart.js"></script>
 </body>
+
 </html>
