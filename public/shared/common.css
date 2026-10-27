@@ -5,21 +5,25 @@
    Tất cả chữ đều là màu đen (#000000), khác biệt bởi font-weight
    ========================================================================== */
 
-/* Google Fonts: Plus Jakarta Sans & Inter (Font không chân / Sans-serif) */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Google Fonts: Noto Sans */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css');
 
 :root {
   /* Tone màu chính: Xám nhạt cao cấp */
-  --body-bg: #ececec;                /* Xám nhạt nền chủ đạo */
-  --card-bg: #f8f8f8;                /* Xám rất nhạt cho card */
+  --body-bg: #ececec;
+  /* Xám nhạt nền chủ đạo */
+  --card-bg: #f8f8f8;
+  /* Xám rất nhạt cho card */
   --card-bg-hover: #ffffff;
-  --gray-light: #e2e2e2;             /* Xám nhạt nhấn */
+  --gray-light: #e2e2e2;
+  /* Xám nhạt nhấn */
   --gray-subtle: #d6d6d6;
-  --gray-border: #cccccc;            /* Viền xám trung tính */
+  --gray-border: #cccccc;
+  /* Viền xám trung tính */
   --gray-dark: #888888;
-  
+
   /* Tất cả chữ đều là màu đen (#000000) */
   --text-primary: #000000;
   --text-secondary: #000000;
@@ -29,30 +33,32 @@
   --primary-color: #000000;
   --primary-hover: #1a1a1a;
   --primary-light: #e5e5e5;
-  
-  /* Typography: 100% Thống nhất dùng Font không chân (Plus Jakarta Sans) cho toàn bộ website */
-  --font-base: "Times New Roman", Times, serif;
+
+  /* Typography: Thống nhất dùng Noto Sans cho toàn bộ website */
+  --font-base: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   --font-sans: var(--font-base);
   --font-serif: var(--font-base);
   --font-heading: var(--font-base);
   --font-body: var(--font-base);
-  
+
   /* Radii & Shadows */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-full: 9999px;
-  
+
   --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.16);
-  
+
   --transition: all 0.2s ease-in-out;
   --header-height: 72px;
 }
 
 /* Reset & Box Sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -81,21 +87,57 @@ main {
 }
 
 /* Headings font & color (Font không chân / Sans-serif) */
-h1, h2, h3, h4, h5, h6, .font-heading, .font-sans, .sans-font {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.font-sans,
+.sans-font {
   font-family: var(--font-heading);
   color: #000000;
   line-height: 1.25;
 }
 
-h1 { font-weight: 800; }
-h2 { font-weight: 800; }
-h3 { font-weight: 700; }
-h4 { font-weight: 700; }
-h5 { font-weight: 600; }
-h6 { font-weight: 600; }
+h1 {
+  font-weight: 800;
+}
+
+h2 {
+  font-weight: 800;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+h4 {
+  font-weight: 700;
+}
+
+h5 {
+  font-weight: 600;
+}
+
+h6 {
+  font-weight: 600;
+}
 
 /* Body, menu, content (Sans-serif) */
-p, span, a, input, select, textarea, button, .font-body, .font-sans, .sans-font, .nav-link, .tab-btn {
+p,
+span,
+a,
+input,
+select,
+textarea,
+button,
+.font-body,
+.font-sans,
+.sans-font,
+.nav-link,
+.tab-btn {
   font-family: var(--font-body);
   color: #000000;
 }
@@ -104,15 +146,25 @@ p {
   font-weight: 400;
 }
 
-strong, b {
+strong,
+b {
   font-weight: 700;
   color: #000000;
 }
 
 /* Cursor pointer */
-a, button, input[type="button"], input[type="submit"], 
-.btn, .nav-link, .tab-btn, .bean-card, .menu-card, 
-.btn-add-item, .icon-btn, .hamburger-btn {
+a,
+button,
+input[type="button"],
+input[type="submit"],
+.btn,
+.nav-link,
+.tab-btn,
+.bean-card,
+.menu-card,
+.btn-add-item,
+.icon-btn,
+.hamburger-btn {
   cursor: pointer;
 }
 
@@ -142,16 +194,29 @@ img {
 }
 
 @media (min-width: 640px) {
-  .container { max-width: 600px; }
+  .container {
+    max-width: 600px;
+  }
 }
+
 @media (min-width: 768px) {
-  .container { max-width: 720px; }
+  .container {
+    max-width: 720px;
+  }
 }
+
 @media (min-width: 1024px) {
-  .container { max-width: 980px; padding-right: 2rem; padding-left: 2rem; }
+  .container {
+    max-width: 980px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
 }
+
 @media (min-width: 1280px) {
-  .container { max-width: 1200px; }
+  .container {
+    max-width: 1200px;
+  }
 }
 
 /* Common Buttons - Tone Xám Nhạt & Đen, Chữ màu đen khác nhau về bold */
@@ -232,7 +297,9 @@ img {
   letter-spacing: 0.5px;
 }
 
-.badge-bestseller, .badge-bestseller-tag, .bestseller-badge-tag {
+.badge-bestseller,
+.badge-bestseller-tag,
+.bestseller-badge-tag {
   background-color: #000000 !important;
   color: #ffffff !important;
   border: 1px solid #000000;
@@ -317,8 +384,15 @@ img {
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Simulated SMS Alert Floating Modal */
