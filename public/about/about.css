@@ -1,11 +1,8 @@
-/* ==========================================================================
-   FOXTAIL - ABOUT US PAGE STYLES
-   Tone: Xám nhạt, Chữ màu đen (#000000)
-   ========================================================================== */
+
 
 .about-hero {
   background: var(--body-bg);
-  color: #000000;
+  color: var(--text-primary);
   padding: 3.5rem 0 2.5rem;
   text-align: center;
   border-bottom: 1.5px solid var(--gray-border);
@@ -16,7 +13,7 @@
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 @media (min-width: 768px) {
@@ -26,7 +23,7 @@
 }
 
 .about-hero p {
-  color: #000000;
+  color: var(--text-primary);
   font-weight: 400;
 }
 
@@ -77,7 +74,7 @@
 }
 
 .value-card {
-  background: #ffffff;
+  background: var(--card-bg);
   padding: 2rem 1.5rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--gray-border);
@@ -89,11 +86,11 @@
   font-size: 1.25rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .value-card p {
-  color: #000000;
+  color: var(--text-primary);
   font-size: 0.9rem;
   font-weight: 400;
 }

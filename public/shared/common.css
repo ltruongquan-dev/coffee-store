@@ -1,56 +1,40 @@
-/* ==========================================================================
-   FOXTAIL - DESIGN SYSTEM & COMMON STYLES
-   Tone chính: Màu xám nhạt (Light Gray)
-   Typography: 100% Font không chân (Sans-serif: Plus Jakarta Sans / Inter)
-   Tất cả chữ đều là màu đen (#000000), khác biệt bởi font-weight
-   ========================================================================== */
 
-/* Google Fonts: Noto Sans */
+
+/* Fonts hỗ trợ tiếng Việt: nội dung Noto Sans, tiêu đề Lora. */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css');
 
 :root {
-  /* Tone màu chính: Xám nhạt cao cấp */
-  --body-bg: #ececec;
-  /* Xám nhạt nền chủ đạo */
-  --card-bg: #f8f8f8;
-  /* Xám rất nhạt cho card */
+  /* FOXTAIL: bảng màu dùng chung cho tất cả các trang. */
+  --body-bg: #f8f3eb;
+  --card-bg: #fffdf9;
   --card-bg-hover: #ffffff;
-  --gray-light: #e2e2e2;
-  /* Xám nhạt nhấn */
-  --gray-subtle: #d6d6d6;
-  --gray-border: #cccccc;
-  /* Viền xám trung tính */
-  --gray-dark: #888888;
-
-  /* Tất cả chữ đều là màu đen (#000000) */
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #000000;
-  --text-inverse: #000000;
-  --dark-espresso: #000000;
-  --primary-color: #000000;
-  --primary-hover: #1a1a1a;
-  --primary-light: #e5e5e5;
-
-  /* Typography: Thống nhất dùng Noto Sans cho toàn bộ website */
+  --gray-light: #eee5d8;
+  --gray-subtle: #e5d6c3;
+  --gray-border: #deceba;
+  --gray-dark: #897563;
+  --text-primary: #301a12;
+  --text-secondary: #65564a;
+  --text-muted: #796857;
+  --text-inverse: #fffaf3;
+  --dark-espresso: #301a12;
+  --primary-color: #8a411e;
+  --primary-hover: #643016;
+  --primary-light: #f1e6d8;
   --font-base: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   --font-sans: var(--font-base);
-  --font-serif: var(--font-base);
-  --font-heading: var(--font-base);
+  --font-serif: 'Lora', 'Noto Sans', serif;
+  --font-heading: var(--font-serif);
   --font-body: var(--font-base);
-
-  /* Radii & Shadows */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-full: 9999px;
-
-  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.16);
-
+  --shadow-sm: 0 1px 4px rgba(48, 26, 18, 0.06);
+  --shadow-md: 0 4px 14px rgba(48, 26, 18, 0.09);
+  --shadow-lg: 0 10px 28px rgba(48, 26, 18, 0.14);
   --transition: all 0.2s ease-in-out;
   --header-height: 72px;
 }
@@ -74,39 +58,38 @@ html {
 body {
   font-family: var(--font-body);
   background-color: var(--body-bg);
-  color: #000000;
+  color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: calc(var(--header-height) + 1.5px);
 }
 
 main {
   flex: 1;
 }
 
-/* Headings font & color (Font không chân / Sans-serif) */
+/* Tiêu đề và nội dung dùng chung. */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-.font-heading,
-.font-sans,
-.sans-font {
+.font-heading {
   font-family: var(--font-heading);
-  color: #000000;
+  color: var(--text-primary);
   line-height: 1.25;
 }
 
 h1 {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 h2 {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 h3 {
@@ -139,7 +122,7 @@ button,
 .nav-link,
 .tab-btn {
   font-family: var(--font-body);
-  color: #000000;
+  color: var(--text-primary);
 }
 
 p {
@@ -149,7 +132,7 @@ p {
 strong,
 b {
   font-weight: 700;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 /* Cursor pointer */
@@ -169,7 +152,7 @@ input[type="submit"],
 }
 
 a {
-  color: #000000;
+  color: var(--text-primary);
   text-decoration: none;
   transition: var(--transition);
 }
@@ -219,7 +202,7 @@ img {
   }
 }
 
-/* Common Buttons - Tone Xám Nhạt & Đen, Chữ màu đen khác nhau về bold */
+/* Nút chính màu nâu, nút phụ viền nâu. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -228,8 +211,8 @@ img {
   border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.95rem;
-  color: #000000;
-  border: 1.5px solid #000000;
+  color: var(--text-primary);
+  border: 1.5px solid var(--primary-color);
   background-color: var(--card-bg);
   transition: var(--transition);
   text-align: center;
@@ -238,40 +221,40 @@ img {
 }
 
 .btn:hover {
-  background-color: #000000;
-  color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-color);
+  color: var(--text-inverse) !important;
+  box-shadow: 0 4px 12px rgba(48, 26, 18, 0.2);
 }
 
 .btn-primary {
-  background-color: #000000;
-  color: #ffffff !important;
-  border: 1.5px solid #000000;
+  background-color: var(--primary-color);
+  color: var(--text-inverse) !important;
+  border: 1.5px solid var(--primary-color);
   font-weight: 700;
 }
 
 .btn-primary:hover {
-  background-color: #262626;
-  border-color: #262626;
-  color: #ffffff !important;
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--text-inverse) !important;
 }
 
 .btn-outline {
   background-color: transparent;
-  color: #000000;
-  border: 1.5px solid #000000;
+  color: var(--text-primary);
+  border: 1.5px solid var(--primary-color);
   font-weight: 600;
 }
 
 .btn-outline:hover {
-  background-color: #000000;
-  color: #ffffff !important;
+  background-color: var(--primary-color);
+  color: var(--text-inverse) !important;
 }
 
 .btn-dark {
-  background-color: #000000;
-  color: #ffffff !important;
-  border: 1.5px solid #000000;
+  background-color: var(--primary-color);
+  color: var(--text-inverse) !important;
+  border: 1.5px solid var(--primary-color);
 }
 
 .btn-block {
@@ -283,6 +266,10 @@ img {
   font-size: 0.85rem;
 }
 
+.btn span, .btn i {
+  color: inherit;
+}
+
 /* Badges - Chỉ giữ lại best seller */
 .badge {
   display: inline-flex;
@@ -291,7 +278,7 @@ img {
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 700;
-  color: #000000;
+  color: var(--text-primary);
   background-color: var(--gray-light);
   border: 1px solid var(--gray-border);
   letter-spacing: 0.5px;
@@ -300,9 +287,9 @@ img {
 .badge-bestseller,
 .badge-bestseller-tag,
 .bestseller-badge-tag {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border: 1px solid #000000;
+  background-color: var(--primary-color) !important;
+  color: var(--text-inverse) !important;
+  border: 1px solid var(--primary-color);
   font-weight: 800;
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-sm);
@@ -318,7 +305,7 @@ img {
 }
 
 .section-header .subtitle {
-  color: #000000;
+  color: var(--text-primary);
   font-weight: 700;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -330,13 +317,13 @@ img {
 .section-header .title {
   font-size: 2rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .section-header .desc {
   max-width: 600px;
   margin: 0.75rem auto 0;
-  color: #000000;
+  color: var(--text-primary);
   font-weight: 400;
   font-size: 0.95rem;
 }
@@ -369,16 +356,16 @@ img {
 
 .toast {
   pointer-events: auto;
-  background: #ffffff;
+  background: var(--card-bg);
   padding: 1rem 1.25rem;
   border-radius: var(--radius-sm);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  border: 1px solid #000000;
+  box-shadow: 0 4px 16px rgba(48, 26, 18, 0.2);
+  border: 1px solid var(--primary-color);
   display: flex;
   align-items: center;
   gap: 12px;
   animation: slideUp 0.3s ease forwards;
-  color: #000000;
+  color: var(--text-primary);
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -402,7 +389,7 @@ img {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(48, 26, 18, 0.6);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -412,14 +399,14 @@ img {
 }
 
 .sms-phone-card {
-  background: #f4f4f4;
-  color: #000000;
+  background: var(--body-bg);
+  color: var(--text-primary);
   border-radius: 16px;
   width: 100%;
   max-width: 380px;
   padding: 1.5rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  border: 2px solid #000000;
+  box-shadow: 0 20px 50px rgba(48, 26, 18, 0.3);
+  border: 2px solid var(--primary-color);
 }
 
 .sms-phone-header {
@@ -432,20 +419,20 @@ img {
 }
 
 .sms-bubble {
-  background: #ffffff;
+  background: var(--card-bg);
   border: 1px solid var(--gray-border);
   border-radius: 10px;
   padding: 14px 16px;
   line-height: 1.5;
   font-size: 0.95rem;
   margin-bottom: 1rem;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .sms-code-highlight {
   display: inline-block;
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-color);
+  color: var(--text-inverse);
   font-weight: 800;
   font-size: 1.3rem;
   letter-spacing: 3px;

@@ -44,12 +44,86 @@ const SIZE_OPTIONS = [
   { key: 'L', label: 'Size L', extra: 12000 }
 ];
 
+function getSizeOptions(item) {
+  const category = (item?.category || '').toLowerCase().trim();
+  const name = (item?.name || '').normalize('NFC').toLowerCase().trim();
+
+  if (category === 'trà trái cây') {
+    return [
+      { key: 'S', label: 'Size S', extra: 0 },
+      { key: 'M', label: 'Size M', extra: 10000 },
+      { key: 'L', label: 'Size L', extra: 17000 }
+    ];
+  }
+
+  // Giá đầy đủ theo từng size của mỗi món cà phê.
+  const coffeePrices = {
+    'phin sữa đá':       { S: 29000, M: 39000, L: 45000 },
+    'phin đen đá':       { S: 29000, M: 35000, L: 39000 },
+    'phindi hạnh nhân':  { S: 45000, M: 49000, L: 55000 },
+    'caramel macchiato': { S: 55000, M: 60000, L: 65000 },
+    'cappucino':         { M: 60000 },
+    'espresso':          { S: 40000, M: 45000, L: 55000 },
+    'americano':         { S: 39000, M: 49000, L: 55000 },
+    'cà phê muối':       { S: 29000, M: 39000, L: 45000 },
+    'latte':             { S: 39000, M: 49000, L: 55000 }
+  };
+
+  if (category === 'trà sữa') {
+  const prices = name === 'yến mạch matcha latte'
+    ? { M: 55000, L: 60000 }
+    : { M: 45000, L: 55000 };
+
+  return Object.entries(prices).map(([key, price]) => ({
+    key,
+    label: `Size ${key}`,
+    extra: price - Number(item.price)
+  }));
+}
+
+if (category === 'đá xay & pha chế') {
+  const prices = name === 'chanh đá xay'
+    ? { M: 40000, L: 45000 }
+    : { M: 55000, L: 60000 };
+
+  return Object.entries(prices).map(([key, price]) => ({
+    key,
+    label: `Size ${key}`,
+    extra: price - Number(item.price)
+  }));
+}
+
+if (category === 'sinh tố & nước ép') {
+  const prices = name.startsWith('sinh tố')
+    ? { M: 40000, L: 50000 }
+    : { M: 30000, L: 40000 };
+
+  return Object.entries(prices).map(([key, price]) => ({
+    key,
+    label: `Size ${key}`,
+    extra: price - Number(item.price)
+  }));
+}
+
+  const prices = coffeePrices[name];
+
+  if (category === 'cà phê' && prices) {
+    return Object.entries(prices).map(([key, price]) => ({
+      key,
+      label: `Size ${key}`,
+      extra: price - Number(item.price)
+    }));
+  }
+
+  return SIZE_OPTIONS;
+}
+
 const TOPPING_OPTIONS = [
   { key: 'pearl_black', label: 'Trân châu đường đen', price: 5000 },
   { key: 'pearl_white', label: 'Trân châu trắng 3Q', price: 5000 },
   { key: 'pudding', label: 'Pudding trứng', price: 6000 },
   { key: 'cheese_foam', label: 'Kem Macchiato Cheese', price: 10000 },
-  { key: 'full_topping', label: 'Full Topping (Đầy đủ loại)', price: 15000, isFull: true }
+  { key: 'full_topping', label: 'Full Topping', price: 15000, isFull: true }
 ];
 
 function formatVND(num) {
@@ -312,7 +386,7 @@ function calculateCurrentPrice() {
   if (!currentModalItem) return 0;
   const base = Number(currentModalItem.price) || 0;
   const sizeObj = hasSize(currentModalItem)
-  ? SIZE_OPTIONS.find(s => s.key === currentModalSize)
+  ? getSizeOptions(currentModalItem).find(s => s.key === currentModalSize)
   : null;
   const extra = sizeObj ? sizeObj.extra : 0;
 
@@ -376,7 +450,7 @@ function renderItemDetailModal() {
         <div class="modal-section">
           <label class="modal-section-title">Chọn kích cỡ (Size):</label>
           <div class="modal-sizes-grid">
-            ${SIZE_OPTIONS.map(opt => {
+            ${getSizeOptions(currentModalItem).map(opt => {
               const fullPrice = basePrice + opt.extra;
               return `
                 <button type="button" class="modal-size-chip ${currentModalSize === opt.key ? 'active' : ''}" data-size="${opt.key}" onclick="selectModalSize('${opt.key}')">
@@ -456,7 +530,7 @@ function getModalPayload() {
   const noteEl = document.getElementById('modal-item-note');
   const note = noteEl ? noteEl.value.trim() : '';
   const sizeObj = hasSize(currentModalItem)
-  ? SIZE_OPTIONS.find(s => s.key === currentModalSize)
+  ? getSizeOptions(currentModalItem).find(s => s.key === currentModalSize)
   : null;
   const sizeExtra = sizeObj ? sizeObj.extra : 0;
 
@@ -553,7 +627,13 @@ document.addEventListener('DOMContentLoaded', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       currentCategory = tab.getAttribute('data-cat');
-      renderMenuCards(true);
+      onlyBestseller = false;
+
+      document
+      .getElementById('btn-filter-bestseller')
+      ?.classList.remove('active');
+
+    renderMenuCards(true);
     });
   });
 
