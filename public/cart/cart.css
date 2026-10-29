@@ -1,11 +1,8 @@
-/* ==========================================================================
-   FOXTAIL - CART PAGE STYLES
-   Tone: Xám nhạt, Chữ màu đen (#000000)
-   ========================================================================== */
+
 
 .cart-hero {
   background: var(--body-bg);
-  color: #000000;
+  color: var(--text-primary);
   padding: 3.5rem 0 2.5rem;
   text-align: center;
   border-bottom: 1.5px solid var(--gray-border);
@@ -16,11 +13,11 @@
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .cart-hero p {
-  color: #000000;
+  color: var(--text-primary);
   font-weight: 400;
 }
 
@@ -43,7 +40,7 @@
 }
 
 .cart-card {
-  background: #ffffff;
+  background: var(--card-bg);
   border-radius: var(--radius-sm);
   border: 1px solid var(--gray-border);
   padding: 1.5rem;
@@ -85,12 +82,12 @@
 .cart-item-title {
   font-weight: 800;
   font-size: 1rem;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .cart-item-price {
-  color: #000000;
+  color: var(--text-primary);
   font-weight: 700;
   font-size: 0.95rem;
 }
@@ -111,7 +108,7 @@
   font-size: 1.1rem;
   font-weight: 800;
   cursor: pointer;
-  color: #000000;
+  color: var(--text-primary);
   width: 24px;
   height: 24px;
   display: flex;
@@ -124,33 +121,33 @@
   font-size: 0.95rem;
   min-width: 20px;
   text-align: center;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .btn-remove-item {
   background: none;
-  border: 1px solid #000000;
+  border: 1px solid var(--primary-color);
   border-radius: var(--radius-sm);
   padding: 4px 8px;
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .btn-remove-item:hover {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-color);
+  color: var(--text-inverse);
 }
 
 /* Order Summary */
 .summary-title {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1.5px solid #000000;
+  border-bottom: 1.5px solid var(--primary-color);
 }
 
 .summary-row {
@@ -158,13 +155,13 @@
   justify-content: space-between;
   margin-bottom: 0.75rem;
   font-size: 0.95rem;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .summary-row.total-row {
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1.5px solid #000000;
+  border-top: 1.5px solid var(--primary-color);
   font-size: 1.2rem;
   font-weight: 900;
 }
@@ -180,7 +177,7 @@
   justify-content: center;
   margin-bottom: 2.5rem;
   padding: 1rem 1.5rem;
-  background: #ffffff;
+  background: var(--card-bg);
   border-radius: var(--radius-md);
   border: 1px solid var(--gray-border);
   box-shadow: var(--shadow-sm);
@@ -193,7 +190,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #888888;
+  color: var(--text-muted);
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -202,7 +199,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1.5px solid #888888;
+  border: 1.5px solid var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -211,13 +208,13 @@
 }
 
 .step-item.active {
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .step-item.active .step-num {
-  background: #000000;
-  color: #ffffff;
-  border-color: #000000;
+  background: var(--primary-color);
+  color: var(--text-inverse);
+  border-color: var(--primary-color);
 }
 
 .step-item.completed {
@@ -226,14 +223,14 @@
 
 .step-item.completed .step-num {
   background: #2e7d32;
-  color: #ffffff;
+  color: var(--text-inverse);
   border-color: #2e7d32;
 }
 
 .step-divider {
   flex: 1;
   height: 2px;
-  background: #e0e0e0;
+  background: var(--gray-light);
   margin: 0 1rem;
   min-width: 24px;
 }
@@ -259,7 +256,7 @@
 .form-label {
   font-size: 0.88rem;
   font-weight: 700;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 6px;
 }
 
@@ -270,15 +267,15 @@
   border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.95rem;
-  color: #000000;
-  background: #ffffff;
+  color: var(--text-primary);
+  background: var(--card-bg);
   transition: var(--transition);
 }
 
 .form-control:focus {
   outline: none;
-  border-color: #000000;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(48, 26, 18, 0.08);
 }
 
 .delivery-options-grid {
@@ -301,23 +298,23 @@
   border-radius: var(--radius-sm);
   padding: 0.85rem 1rem;
   cursor: pointer;
-  background: #fafafa;
+  background: var(--body-bg);
   transition: var(--transition);
 }
 
 .delivery-radio-card:hover {
-  background: #ffffff;
-  border-color: #888888;
+  background: var(--card-bg);
+  border-color: var(--text-muted);
 }
 
 .delivery-radio-card.active {
-  border-color: #000000;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary-color);
+  background: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(48, 26, 18, 0.08);
 }
 
 .delivery-radio-card input {
-  accent-color: #000000;
+  accent-color: var(--primary-color);
   width: 18px;
   height: 18px;
 }
@@ -326,14 +323,14 @@
   display: block;
   font-size: 0.92rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 2px;
 }
 
 .radio-content span {
   display: block;
   font-size: 0.8rem;
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 /* 3. Online Payment Step (Step 2) */
@@ -399,25 +396,25 @@
   padding: 1rem 1.25rem;
   border: 1.5px solid var(--gray-border);
   border-radius: var(--radius-sm);
-  background: #ffffff;
+  background: var(--card-bg);
   cursor: pointer;
   transition: var(--transition);
   position: relative;
 }
 
 .pay-method-card:hover {
-  border-color: #888888;
-  background: #fafafa;
+  border-color: var(--text-muted);
+  background: var(--body-bg);
 }
 
 .pay-method-card.active {
-  border-color: #000000;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary-color);
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px rgba(48, 26, 18, 0.08);
 }
 
 .pay-method-card input {
-  accent-color: #000000;
+  accent-color: var(--primary-color);
   width: 18px;
   height: 18px;
 }
@@ -426,8 +423,8 @@
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-color);
+  color: var(--text-inverse);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -443,19 +440,19 @@
   display: block;
   font-size: 0.95rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 2px;
 }
 
 .pay-method-info span {
   display: block;
   font-size: 0.82rem;
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .badge-recommended {
   background: #d32f2f;
-  color: #ffffff;
+  color: var(--text-inverse);
   font-size: 0.72rem;
   font-weight: 800;
   padding: 3px 8px;
@@ -465,7 +462,7 @@
 
 /* 4. Payment Details Box (QR Code Card) */
 .payment-details-box {
-  background: #fbfbfb;
+  background: var(--body-bg);
   border: 1.5px solid var(--gray-border);
   border-radius: var(--radius-md);
   padding: 1.5rem;
@@ -490,11 +487,11 @@
 
 .qr-frame {
   position: relative;
-  background: #ffffff;
+  background: var(--card-bg);
   padding: 12px;
   border-radius: 12px;
-  border: 2px solid #000000;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 4px 14px rgba(48, 26, 18, 0.1);
   text-align: center;
 }
 
@@ -507,8 +504,8 @@
 }
 
 .qr-scan-badge {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-color);
+  color: var(--text-inverse);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 4px 8px;
@@ -519,7 +516,7 @@
 .bank-title {
   font-size: 1.15rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
@@ -535,7 +532,7 @@
   flex-direction: column;
   gap: 2px;
   padding-bottom: 0.6rem;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid var(--gray-border);
 }
 
 @media (min-width: 480px) {
@@ -548,19 +545,19 @@
 
 .bank-detail-row .label {
   font-size: 0.88rem;
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .bank-detail-row .value {
   font-size: 0.95rem;
-  color: #000000;
+  color: var(--text-primary);
   font-weight: 700;
 }
 
 .bank-detail-row .highlight-text {
   font-family: monospace;
   font-size: 1.05rem;
-  background: #f0f0f0;
+  background: var(--primary-light);
   padding: 2px 8px;
   border-radius: 4px;
 }
@@ -572,8 +569,8 @@
 }
 
 .btn-copy-small {
-  background: #ffffff;
-  border: 1px solid #000000;
+  background: var(--card-bg);
+  border: 1px solid var(--primary-color);
   border-radius: 4px;
   padding: 3px 8px;
   font-size: 0.75rem;
@@ -583,15 +580,15 @@
 }
 
 .btn-copy-small:hover {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-color);
+  color: var(--text-inverse);
 }
 
 .qr-help-text {
   font-size: 0.85rem;
-  color: #555555;
+  color: var(--text-secondary);
   line-height: 1.5;
-  background: #ffffff;
+  background: var(--card-bg);
   padding: 0.75rem 1rem;
   border-radius: 6px;
   border: 1px dashed var(--gray-border);
@@ -618,17 +615,17 @@
 }
 
 .card-brand-badge {
-  background: #ffffff;
+  background: var(--card-bg);
   border: 1px solid var(--gray-border);
   padding: 5px 12px;
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .card-mock-form {
-  background: #ffffff;
+  background: var(--card-bg);
   border: 1px solid var(--gray-border);
   padding: 1.25rem;
   border-radius: var(--radius-sm);
@@ -639,7 +636,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  color: #333333;
+  color: var(--text-primary);
 }
 
 .pay-summary-divider {
@@ -684,20 +681,20 @@
   font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
 
 .success-subtitle {
   font-size: 1rem;
-  color: #555555;
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 520px;
   margin: 0 auto 2rem auto;
 }
 
 .order-receipt-card {
-  background: #fafafa;
+  background: var(--body-bg);
   border: 1.5px dashed var(--gray-border);
   border-radius: var(--radius-md);
   padding: 1.5rem;
@@ -722,7 +719,7 @@
 
 .receipt-status-badge {
   background: #2e7d32;
-  color: #ffffff;
+  color: var(--text-inverse);
   font-size: 0.72rem;
   font-weight: 800;
   padding: 3px 8px;
@@ -734,7 +731,7 @@
   grid-template-columns: 1fr;
   gap: 0.75rem;
   font-size: 0.92rem;
-  color: #333333;
+  color: var(--text-primary);
 }
 
 @media (min-width: 480px) {

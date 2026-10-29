@@ -1,7 +1,4 @@
-/* ==========================================================================
-   FOXTAIL - ADMIN DASHBOARD STYLES
-   Tone: Xám nhạt, Chữ màu đen (#000000)
-   ========================================================================== */
+
 
 .admin-page-wrapper {
   padding: 2.5rem 0 4rem;
@@ -21,11 +18,11 @@
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
 }
 
 .admin-title-group p {
-  color: #000000;
+  color: var(--text-primary);
   font-size: 0.95rem;
   font-weight: 400;
 }
@@ -39,7 +36,7 @@
 }
 
 .stat-card {
-  background: #ffffff;
+  background: var(--card-bg);
   border-radius: var(--radius-sm);
   border: 1px solid var(--gray-border);
   padding: 1.25rem 1.5rem;
@@ -50,14 +47,14 @@
   font-size: 1.8rem;
   font-weight: 800;
   font-family: var(--font-heading);
-  color: #000000;
+  color: var(--text-primary);
   line-height: 1.1;
   margin-bottom: 4px;
 }
 
 .stat-label {
   font-size: 0.82rem;
-  color: #000000;
+  color: var(--text-primary);
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -77,7 +74,7 @@
 }
 
 .admin-card {
-  background: #ffffff;
+  background: var(--card-bg);
   border-radius: var(--radius-sm);
   border: 1px solid var(--gray-border);
   box-shadow: var(--shadow-sm);
@@ -87,10 +84,10 @@
 .admin-card-title {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 1.25rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1.5px solid #000000;
+  border-bottom: 1.5px solid var(--primary-color);
 }
 
 .form-group {
@@ -101,7 +98,7 @@
   display: block;
   font-size: 0.88rem;
   font-weight: 700;
-  color: #000000;
+  color: var(--text-primary);
   margin-bottom: 0.4rem;
 }
 
@@ -112,14 +109,14 @@
   border-radius: var(--radius-sm);
   background: var(--body-bg);
   font-size: 0.92rem;
-  color: #000000;
+  color: var(--text-primary);
   transition: var(--transition);
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
   outline: none;
-  border-color: #000000;
-  background: #ffffff;
+  border-color: var(--primary-color);
+  background: var(--card-bg);
 }
 
 /* Table */
@@ -138,15 +135,15 @@
   padding: 0.75rem 1rem;
   background-color: var(--gray-light);
   font-weight: 800;
-  color: #000000;
-  border-bottom: 1.5px solid #000000;
+  color: var(--text-primary);
+  border-bottom: 1.5px solid var(--primary-color);
   white-space: nowrap;
 }
 
 .admin-table td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--gray-border);
-  color: #000000;
+  color: var(--text-primary);
   vertical-align: middle;
 }
 
@@ -160,7 +157,7 @@
 
 .table-audit-meta {
   font-size: 0.78rem;
-  color: #000000;
+  color: var(--text-primary);
   line-height: 1.4;
   font-weight: 500;
 }
@@ -174,15 +171,15 @@
 .btn-table-action {
   padding: 4px 8px;
   border-radius: var(--radius-sm);
-  border: 1px solid #000000;
-  background: #ffffff;
-  color: #000000;
+  border: 1px solid var(--primary-color);
+  background: var(--card-bg);
+  color: var(--text-primary);
   font-weight: 700;
   font-size: 0.78rem;
   cursor: pointer;
 }
 
 .btn-table-action:hover {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-color);
+  color: var(--text-inverse);
 }

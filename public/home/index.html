@@ -22,9 +22,10 @@
   <link rel="stylesheet" href="/shared/navbar.css">
   <link rel="stylesheet" href="/shared/footer.css">
   <link rel="stylesheet" href="/home/home.css">
+  <link href="https://fonts.googleapis.com/css2?family=:ital,wght@0,400;0,600;0,700;1,400&display=swap&subset=vietnamese" rel="stylesheet">
 </head>
 
-<body>
+<body class="foxtail-home">
 
   <!-- ================= NAVBAR ================= -->
   <!-- Logo -> Hạt cà phê -> Thực đơn -> Về chúng tôi -> Liên hệ -> Giỏ hàng -> User -->
@@ -32,9 +33,9 @@
     <div class="nav-container container">
       <!-- 1. Logo (Click trở về trang chủ) -->
       <a href="/home/" class="brand-logo" title="FOXTAIL - Về Trang Chủ">
-        <img src="/assets/images/logo.png" alt="FOXTAIL" class="brand-logo-img">
+        <img src="/assets/images/home/foxtail-logo.png" alt="FOXTAIL" class="brand-logo-img">
         <div class="logo-text">
-          <span class="logo-title">FOXTAIL</span>
+          <span class="logo-title">FOXTAIL</span><span class="logo-sub">COFFEE &amp; TEA</span>
         </div>
       </a>
 
@@ -76,7 +77,7 @@
   <aside id="mobile-drawer" class="mobile-drawer">
     <div>
       <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
-        <img src="/assets/images/logo.png" alt="FOXTAIL" style="height: 38px; width: auto; object-fit: contain;">
+        <img src="/assets/images/home/foxtail-logo.png" alt="FOXTAIL" style="height: 38px; width: auto; object-fit: contain;">
         <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: #000000;">FOXTAIL</span>
       </div>
       <ul class="mobile-menu-links">
@@ -91,103 +92,58 @@
   </aside>
 
   <!-- ================= MAIN CONTENT ================= -->
-  <main>
-    <!-- HERO BACKGROUND VỚI CHỮ ĐÈ LÊN PHẦN DƯỚI CỦA BACKGROUND -->
-    <section class="home-hero-banner">
-      <div class="home-hero-bg-wrap">
-        <img src="/assets/images/home/background.avif" alt="FOXTAIL" class="home-bg-img">
-        <div class="home-hero-gradient-overlay"></div>
-      </div>
-      <div class="home-hero-overlay-content">
-        <div class="container text-center">
-          <h1 class="intro-title">Khám Phá Hương Vị Cà Phê Nguyên Bản Cùng FOXTAIL</h1>
-          <div class="intro-actions">
-            <a href="/menu/" class="btn btn-hero-order">Order ngay</a>
+  <main id="main-content">
+    <!-- 1. BANNER: chữ thật và ảnh nền riêng, dễ sửa trên điện thoại. -->
+    <section class="ft-hero" aria-labelledby="hero-title">
+      <img class="ft-hero-photo" src="/assets/images/home/combo-nuoc-va-banh.jpg"
+        alt="Ly cà phê và bánh sừng bò trên bàn gỗ trong quán" fetchpriority="high">
+      <div class="ft-beans" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="container ft-hero-inner">
+        <div class="ft-hero-copy">
+          <p class="ft-eyebrow">CÀ PHÊ – TRÀ – BÁNH NGỌT</p>
+          <h1 id="hero-title">Một chút<br>cà phê,<br><em>một chút</em><br>niềm vui</h1>
+          <p class="ft-intro">FOXTAIL là nơi bạn có thể thưởng thức những ly cà phê đậm đà, những tách trà thanh mát và những chiếc bánh ngọt thơm ngon mang đến cho bạn những khoảnh khắc thư giãn và gần gũi.</p>
+          <div class="ft-actions">
+            <a class="ft-button" href="/menu/">Khám phá thực đơn <span aria-hidden="true">→</span></a>
+            <a class="ft-button ft-button-outline" href="/about/">Về FOXTAIL</a>
           </div>
+          <p class="ft-hero-footnote">CHẬM MỘT NHỊP · THƯỞNG MỘT NGỤM</p>
         </div>
+        <p class="ft-mood" aria-hidden="true">Good Coffee<br>Good Mood</p>
       </div>
     </section>
 
-    <!-- 1. QUẦY PHA CHẾ (BARISTA & ESPRESSO BAR) -->
-    <section id="quay-pha-che" class="showcase-section">
-      <div class="container">
-        <div class="showcase-grid">
-          <div class="showcase-image-col">
-            <div class="image-frame">
-              <img src="/assets/images/home/space-order.jpg" alt="Quầy order và pha chế cà phê thủ công tại FOXTAIL">
-            </div>
-          </div>
-          <div class="showcase-content-col">
-            <h2 class="showcase-title">Quầy Pha Chế Thủ Công & Tỉ Mỉ</h2>
-            <p class="showcase-desc">
-              Trái tim của FOXTAIL là quầy bar mở hiện đại, nơi bạn có thể tận mắt chiêm ngưỡng các Barista thực hiện
-              từng thao tác căn chỉnh tỉ lệ chiết xuất, nhiệt độ nước và áp suất để cho ra ly Espresso và Latte Art hoàn
-              hảo.
-            </p>
+    <!-- 2. CÂU CHUYỆN FOXTAIL -->
+    <section class="ft-story" aria-labelledby="story-title">
+      <div class="container ft-story-grid">
+        <div class="ft-story-visual">
+          <img class="ft-story-photo" src="/assets/images/home/space-for-work.avif"
+            alt="Không gian quán cà phê dành cho những giờ trò chuyện và làm việc" loading="lazy">
+          <div class="ft-note">
+            <img src="/assets/images/home/foxtail-logo.png" alt="" width="60" height="60" loading="lazy">
+            <p>Một góc nhỏ<br>cho những<br>khoảnh khắc<br>đẹp hơn.</p>
           </div>
         </div>
+        <div class="ft-story-copy">
+          <p class="ft-kicker">VỀ FOXTAIL</p>
+          <h2 id="story-title">Câu chuyện<br>của chúng tôi</h2>
+          <p>FOXTAIL ra đời với mong muốn mang đến một không gian cà phê thân thiện, nơi mọi người có thể thư giãn, làm việc, học tập hay trò chuyện cùng bạn bè. Chúng tôi tin rằng một ly cà phê ngon không chỉ giúp tỉnh táo, mà còn tạo nên những khoảnh khắc kết nối và ấm cúng trong cuộc sống.</p>
+          <a class="ft-button" href="/about/">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
+        </div>
+        <img class="ft-story-watermark" src="/assets/images/home/foxtail-logo.png" alt="" loading="lazy">
       </div>
     </section>
 
-    <!-- 2. HÌNH ẢNH CỦA QUÁN (KHÔNG GIAN) -->
-    <section id="khong-gian-quan" class="showcase-section">
+    <!-- 3. GIÁ TRỊ CỐT LÕI: -->
+    <section class="ft-values" aria-labelledby="values-title">
       <div class="container">
-        <div class="showcase-grid reverse">
-          <div class="showcase-image-col">
-            <div class="image-frame">
-              <img src="/assets/images/home/space-for-work.avif" alt="Hình ảnh không gian quán FOXTAIL ấm cúng">
-            </div>
-          </div>
-          <div class="showcase-content-col">
-            <h2 class="showcase-title">Không Gian Xám Nhạt Tối Giản Thư Thái</h2>
-            <p class="showcase-desc">
-              Được thiết kế giao hòa giữa mảng tường xám trang nhã và ánh sáng tự nhiên ngập tràn. FOXTAIL mang lại cảm
-              giác dễ chịu cho những giờ làm việc tập trung hoặc những cuộc gặp gỡ bạn bè thân tình.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. NƯỚC UỐNG ĐẶC TRƯNG & BÁNH TƯƠI (Nước và Bánh vào giữa khung hình) -->
-    <section id="thuc-uong" class="showcase-section">
-      <div class="container">
-        <div class="showcase-grid">
-          <div class="showcase-image-col">
-            <div class="image-frame combo-drink-cake-frame">
-              <img src="/assets/images/home/combo-nuoc-va-banh.jpg"
-                alt="Thực đơn nước đa dạng kết hợp bánh tươi thơm ngon căn giữa khung hình">
-            </div>
-          </div>
-          <div class="showcase-content-col">
-            <h2 class="showcase-title">Thực Đơn Nước Đa Dạng & Bánh Tươi Hảo Hạng</h2>
-            <p class="showcase-desc">
-              Từ Cà phê Muối béo ngậy êm dịu, dòng Phindi thế hệ mới độc đáo, đến Trà Sữa Oolong Nướng đậm vị. Kết hợp
-              cùng những chiếc Croissant bơ Pháp hay Tiramisu tươi nướng mỗi ngày chiều lòng mọi gu thưởng thức.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. HẠT CÀ PHÊ MỘC TÂY NGUYÊN -->
-    <section id="hat-ca-phe" class="showcase-section">
-      <div class="container">
-        <div class="showcase-grid reverse">
-          <div class="showcase-image-col">
-            <div class="image-frame">
-              <img src="/assets/images/home/hạt cà phê Việt.jpg"
-                alt="Hạt cà phê đặc sản Tây Nguyên rang mộc thuần khiết">
-            </div>
-          </div>
-          <div class="showcase-content-col">
-            <h2 class="showcase-title">Hạt Cà Phê Tây Nguyên Rang Mộc</h2>
-            <p class="showcase-desc">
-              Chúng tôi tuyển chọn thủ công từng mẻ hạt cà phê chín mọng từ đất đỏ bazan Đắk Lắk - Buôn Ma Thuột. Rang
-              mộc thủ công 100% không tẩm ướp phụ gia hay bơ công nghiệp, chỉ dùng để chiết xuất những tách cà phê thơm
-              ngon nguyên bản nhất phục vụ khách tại quán.
-            </p>
-          </div>
+        <p class="ft-kicker">GIÁ TRỊ CỐT LÕI</p>
+        <h2 id="values-title">Điều làm nên FOXTAIL</h2>
+        <div class="ft-values-grid">
+          <article><img src="/assets/images/home/foxtail-logo.png" alt="" loading="lazy"><h3>Nguyên liệu chất lượng</h3><p>Lựa chọn hạt cà phê và lá trà<br>từ những vùng nguyên liệu uy tín.</p></article>
+          <article><img src="/assets/images/home/foxtail-logo.png" alt="" loading="lazy"><h3>Hương vị tinh tế</h3><p>Đồ uống được chuẩn bị tỉ mỉ<br>phù hợp với nhiều khẩu vị.</p></article>
+          <article><img src="/assets/images/home/foxtail-logo.png" alt="" loading="lazy"><h3>Không gian thân thiện</h3><p>Một nơi thoải mái cho học tập,<br>làm việc và gặp gỡ bạn bè.</p></article>
+          <article><img src="/assets/images/home/foxtail-logo.png" alt="" loading="lazy"><h3>Hướng đến bền vững</h3><p>Ưu tiên dùng nguyên liệu thân thiện<br>với môi trường.</p></article>
         </div>
       </div>
     </section>
@@ -199,9 +155,9 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/home/" class="brand-logo">
-            <img src="/assets/images/logo.png" alt="FOXTAIL" class="brand-logo-img">
+            <img src="/assets/images/home/foxtail-logo.png" alt="FOXTAIL" class="brand-logo-img">
             <div class="logo-text">
-              <span class="logo-title">FOXTAIL</span>
+              <span class="logo-title">FOXTAIL</span><span class="logo-sub">COFFEE &amp; TEA</span>
             </div>
           </a>
           <p class="footer-desc">
