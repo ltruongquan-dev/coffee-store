@@ -267,7 +267,7 @@ function renderMenuCards(animate = false) {
     html += `
       <div class="menu-card ${isBs ? 'is-bestseller-card' : ''}" data-category="${item.category}" data-id="${itemId}" onclick="openItemDetailModal('${itemId}')">
         <div class="menu-card-img-wrap">
-          <img src="${item.image || '/assets/images/home/home-bg.avif'}" alt="${item.name}" loading="lazy">
+          <img src="${item.image || '/assets/images/home/home-bg.avif'}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='/assets/images/home/foxtail-logo.png';">
           ${isBs ? '<span class="card-bestseller-badge">Best seller</span>' : ''}
           ${!isAvailable ? '<span class="card-soldout-badge">Hết hàng</span>' : ''}
         </div>
@@ -425,7 +425,7 @@ function renderItemDetailModal() {
 
   content.innerHTML = `
     <div class="modal-detail-img-wrap">
-      <img src="${item.image || '/assets/images/home/home-bg.avif'}" alt="${item.name}">
+      <img src="${item.image || '/assets/images/home/home-bg.avif'}" alt="${item.name}" onerror="this.onerror=null; this.src='/assets/images/home/foxtail-logo.png';">
       ${isBs ? '<span class="modal-bestseller-badge">Best seller</span>' : ''}
     </div>
 
