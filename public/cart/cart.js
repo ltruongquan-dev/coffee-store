@@ -60,7 +60,7 @@ function renderCartItems() {
 
     html += `
       <div class="cart-item-row" data-id="${itemKey}">
-        <img class="cart-item-img" src="${item.image || '/assets/images/home/bánh sừng và cf sữa.jpg'}" alt="${item.name}">
+        <img class="cart-item-img" src="${item.image || '/assets/images/home/bánh sừng và cf sữa.jpg'}" alt="${item.name}" onerror="this.onerror=null; this.src='/assets/images/home/foxtail-logo.png';">
         <div class="cart-item-info">
           <div class="cart-item-title">${item.name}</div>
           ${item.size ? `<div style="font-size: 0.8rem; color: #444; font-weight: 600;">Size: ${item.size}</div>` : ''}
