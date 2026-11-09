@@ -921,3 +921,63 @@
 .menu-card .menu-card-bottom-row {
   margin-top: 0;
 }
+
+
+/* THANH TÌM KIẾM FOXTAIL - NHỎ GỌN */
+.menu-search-wrapper {
+  width: 100%;
+  background: #faf7f2;
+  padding: 12px 15px 8px;
+}
+
+.menu-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 4px 5px 4px 14px;
+  background: #fff;
+  border: 1px solid #ddc8b4;
+  border-radius: 25px;
+}
+
+.menu-search-box i {
+  color: #91451f;
+  font-size: 13px;
+}
+
+.menu-search-box input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 12px;
+  color: #38251c;
+}
+
+.menu-search-box button {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 20px;
+  background: #91451f;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.menu-search-box button:hover {
+  background: #6e3216;
+}
+
+@media (max-width: 480px) {
+  .menu-search-box {
+    max-width: 100%;
+  }
+
+  .menu-search-box button {
+    padding: 7px 10px;
+  }
+}

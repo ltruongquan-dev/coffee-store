@@ -28,6 +28,7 @@ function hasSize(item) {
 }
 
 let allMenuItems = [];
+let searchResults = null;
 let currentProductGroup = 'drink'; // 'drink' | 'bakery' | 'combo'
 let currentCategory = 'all';
 let onlyBestseller = false;
@@ -191,7 +192,14 @@ function checkAdminPermissionsUI() {
 }
 
 function filterItems() {
+  // Ưu tiên kết quả tìm kiếm từ API
+  if (searchResults !== null) {
+    return searchResults;
+  }
+
   let list = allMenuItems;
+
+  // 1. Lọc theo Nhóm sản phẩm lớn (Nước, Bánh, Combo Bánh Nước)
 
   // 1. Lọc theo Nhóm sản phẩm lớn (Nước, Bánh, Combo Bánh Nước)
   if (currentProductGroup === 'drink') {
@@ -230,12 +238,53 @@ function filterItems() {
   return list;
 }
 
+
 /**
  * Hiển thị danh sách thẻ món (Mobile First):
  * - Không có icon like, không có số like
  * - Không có nút Giỏ hàng và Mua ngay ở thẻ
- * - Chỉ có 1 dấu "+" nổi bật để mở Modal chi tiết món
+ * - Chỉ có 1 dấu "+" để mở Modal chi tiết món
  */
+
+// TÌM KIẾM SẢN PHẨM BẰNG API
+async function searchMenuItems() {
+    const input = document.getElementById('menu-search-input');
+    const keyword = input.value.trim();
+
+    // Nếu ô tìm kiếm trống, hiển thị thực đơn bình thường
+    if (!keyword) {
+        searchResults = null;
+        renderMenuCards(true);
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `/api/menu/search?q=${encodeURIComponent(keyword)}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Không thể kết nối API tìm kiếm');
+        }
+
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error('Tìm kiếm không thành công');
+        }
+
+        // Lưu kết quả từ Backend
+        searchResults = result.data;
+
+        // Hiển thị sản phẩm tìm được
+        renderMenuCards(true);
+
+    } catch (error) {
+        console.error('Lỗi tìm kiếm:', error);
+        alert('Không thể tìm kiếm sản phẩm. Vui lòng thử lại!');
+    }
+}
+
 function renderMenuCards(animate = false) {
   const gridContainer = document.getElementById('menu-items-grid');
   if (!gridContainer) return;
@@ -598,6 +647,29 @@ function confirmModalBuyNow() {
 // KHỞI TẠO SỰ KIỆN TRANG THỰC ĐƠN
 // =========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+  
+// SỰ KIỆN THANH TÌM KIẾM
+const searchInput = document.getElementById('menu-search-input');
+const searchBtn = document.getElementById('menu-search-btn');
+
+// Nhấn nút Tìm kiếm
+searchBtn?.addEventListener('click', searchMenuItems);
+
+// Nhấn Enter để tìm kiếm
+searchInput?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        searchMenuItems();
+    }
+});
+
+// Xóa hết từ khóa thì hiển thị lại thực đơn
+searchInput?.addEventListener('input', () => {
+    if (!searchInput.value.trim()) {
+        searchResults = null;
+        renderMenuCards(true);
+    }
+});
+
   fetchMenuData();
 
   // 1. Nhóm sản phẩm lớn (Nước | Bánh | Combo Bánh Nước)
