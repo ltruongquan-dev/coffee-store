@@ -35,7 +35,13 @@ async function seedMenuIfEmpty() {
   try {
     const initialItems = readMenuJson();
     const count = await MenuItem.countDocuments();
-    const hasOldData = await MenuItem.findOne({ image: { $regex: /drink_specialty|artisan_pastries|coffee_beans_roast/ } });
+    const hasOldData = await MenuItem.findOne({
+      $or: [
+        { image: { $regex: /drink_specialty|artisan_pastries|coffee_beans_roast/i } },
+        { image: { $regex: /cafe and cacao|bánh sừng bò\.webp|Sinh tố & Nước ép|Soda & Thức uống|Trà trái cây/i } },
+        { image: { $regex: /Trà sữa khoai môn|Trà sữa Ô long nướng|cà phê muối\.jpg/i } }
+      ]
+    });
     if (count === 0 || hasOldData) {
       if (hasOldData) {
         await MenuItem.deleteMany({});
@@ -67,6 +73,66 @@ async function seedMenuIfEmpty() {
 }
 
 // 1. GET /api/menu - Lấy danh sách thực đơn (tối ưu tốc độ cao với lean query)
+
+ // API tìm kiếm món ăn, đồ uống theo tên
+ // GET /api/menu/search?q=ca phe muoi
+
+ router.get('/search', async (req, res) => {
+   try {
+     const keyword = String(req.query.q || '').trim();
+
+     if (!keyword) {
+       return res.status(200).json({
+         success: true,
+         count: 0,
+         data: []
+       });
+     }
+
+     // Chuẩn hóa để tìm không phân biệt dấu tiếng Việt
+     const normalize = (text) =>
+       String(text || '')
+         .normalize('NFD')
+         .replace(/[\u0300-\u036f]/g, '')
+         .replace(/đ/g, 'd')
+         .replace(/Đ/g, 'D')
+         .toLowerCase();
+
+     // Lấy dữ liệu từ MongoDB nếu đang kết nối
+     // Nếu không, đọc dữ liệu từ menu.json
+     const mongoose = require('mongoose');
+
+     let items;
+
+     if (mongoose.connection.readyState === 1) {
+       await seedMenuIfEmpty();
+       items = await MenuItem.find({}).lean();
+     } else {
+       items = readMenuJson();
+     }
+
+     const searchText = normalize(keyword);
+
+     const results = items.filter(item =>
+       normalize(item.name).includes(searchText)
+     );
+
+     return res.status(200).json({
+       success: true,
+       count: results.length,
+       data: results
+     });
+
+   } catch (error) {
+     console.error('Lỗi tìm kiếm:', error);
+
+     return res.status(500).json({
+       success: false,
+       message: 'Không thể tìm kiếm sản phẩm'
+     });
+   }
+ });
+
 router.get('/', async (req, res) => {
   try {
     // Nếu MongoDB chưa kết nối, lập tức trả về file JSON không chờ timeout
@@ -287,6 +353,39 @@ router.post('/:id/like', async (req, res) => {
   } catch (error) {
     console.error('Lỗi like món:', error);
     return res.status(500).json({ success: false, message: 'Lỗi server khi like món' });
+  }
+});
+
+// 6. GET /api/menu/resync - Đồng bộ lại toàn bộ món từ data/menu.json vào MongoDB
+router.get('/resync', async (req, res) => {
+  try {
+    const initialItems = readMenuJson();
+    await MenuItem.deleteMany({});
+    for (const item of initialItems) {
+      await MenuItem.create({
+        code: item.code || '',
+        name: item.name,
+        category: (item.category || '').toLowerCase().trim(),
+        productGroup: item.productGroup || 'nước',
+        price: item.price,
+        description: item.description || '',
+        image: item.image || '/assets/images/home/home-bg.avif',
+        isBestseller: !!item.isBestseller,
+        likes: item.likes || 0,
+        createdBy: item.createdBy || 'Admin Quản Trị',
+        updatedBy: item.updatedBy || 'Admin Quản Trị',
+        createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
+        updatedAt: item.updatedAt ? new Date(item.updatedAt) : new Date()
+      });
+    }
+    hasSeeded = true;
+    return res.status(200).json({
+      success: true,
+      message: 'Đã đồng bộ lại thực đơn thành công từ menu.json!',
+      count: initialItems.length
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: err.message });
   }
 });
 
