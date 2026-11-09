@@ -38,7 +38,7 @@ mongoose.connect(MONGODB_URI, {
       const hashedPassword = await bcrypt.hash('admin123', salt);
       await User.create({
         phone: '0909000000',
-        name: 'Chủ Quán (Admin Cáo Ngọt)',
+        name: 'Chủ Quán (Admin FOXTAIL)',
         password: hashedPassword,
         role: 'admin'
       });
@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`\n=================================================`);
-  console.log(`🦊 CÁO NGỌT Web App Server đang chạy tại:`);
+  console.log(`🦊 FOXTAIL Web App Server đang chạy tại:`);
   console.log(`👉 http://localhost:${PORT}`);
   console.log(`👉 Trang chủ:    http://localhost:${PORT}/home/`);
   console.log(`👉 Cà phê:      http://localhost:${PORT}/coffee/`);
