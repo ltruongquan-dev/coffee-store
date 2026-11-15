@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Đơn Hàng Của Tôi - FOXTAIL</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
+
+  <link rel="stylesheet" href="/shared/common.css">
+  <link rel="stylesheet" href="/shared/navbar.css">
+  <link rel="stylesheet" href="/shared/footer.css">
+  <link rel="stylesheet" href="/orders/orders.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="nav-container container">
+
+      <a href="/home/" class="brand-logo">
+        <img src="/assets/images/home/foxtail-logo.png"
+          alt="FOXTAIL" class="brand-logo-img">
+
+        <div class="logo-text">
+          <span class="logo-title">FOXTAIL</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="/coffee/" class="nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="nav-link">Thực Đơn</a></li>
+        <li><a href="/orders/" class="nav-link active">Đơn Hàng</a></li>
+        <li><a href="/about/" class="nav-link">Về Chúng Tôi</a></li>
+      </ul>
+
+      <div class="nav-actions">
+
+        <a href="/cart/" class="nav-icon-btn nav-cart-btn">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <div class="user-menu-wrapper">
+          <button id="user-menu-btn" class="nav-icon-btn">
+            <i class="fa-solid fa-user"></i>
+          </button>
+
+          <div id="user-dropdown" class="user-dropdown"></div>
+        </div>
+
+        <button id="hamburger-btn" class="hamburger-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+
+  <aside id="mobile-drawer" class="mobile-drawer">
+
+    <div>
+      <ul class="mobile-menu-links">
+        <li><a href="/coffee/" class="mobile-nav-link">Hạt Cà Phê</a></li>
+        <li><a href="/menu/" class="mobile-nav-link">Thực Đơn</a></li>
+        <li><a href="/orders/" class="mobile-nav-link active">Đơn Hàng</a></li>
+        <li><a href="/cart/" class="mobile-nav-link">Giỏ Hàng</a></li>
+      </ul>
+    </div>
+
+    <div id="mobile-drawer-auth" class="mobile-drawer-auth"></div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <section class="orders-hero">
+      <div class="container">
+        <h1>Đơn Hàng Của Tôi</h1>
+        <p>Theo dõi đơn hàng và lịch sử mua sắm tại FOXTAIL.</p>
+      </div>
+    </section>
+
+    <section class="orders-section">
+      <div class="container">
+
+        <!-- THÔNG TIN ĐIỂM THƯỞNG -->
+        <div class="loyalty-card">
+
+          <div class="loyalty-icon">
+            <i class="fa-solid fa-award"></i>
+          </div>
+
+          <div class="loyalty-info">
+            <h2>Điểm Thành Viên</h2>
+
+            <p>
+              Tổng điểm tích lũy của bạn:
+              <strong id="loyalty-points">0</strong> điểm
+            </p>
+          </div>
+
+        </div>
+
+        <!-- TIÊU ĐỀ DANH SÁCH -->
+        <div class="orders-heading">
+
+          <div>
+            <h2>Lịch Sử Đơn Hàng</h2>
+            <p>Xem tất cả các đơn hàng bạn đã đặt.</p>
+          </div>
+
+          <button id="btn-refresh-orders" class="btn btn-outline">
+            <i class="fa-solid fa-rotate"></i>
+            Làm mới
+          </button>
+
+        </div>
+
+        <!-- BỘ LỌC TRẠNG THÁI -->
+        <div class="orders-filter">
+
+          <label for="order-status-filter">
+            Lọc theo trạng thái:
+          </label>
+
+          <select id="order-status-filter" class="form-control">
+
+            <option value="">Tất cả đơn hàng</option>
+            <option value="pending">Chờ xác nhận</option>
+            <option value="confirmed">Đã xác nhận</option>
+            <option value="preparing">Đang chuẩn bị</option>
+            <option value="delivering">Đang giao hàng</option>
+            <option value="completed">Đã hoàn thành</option>
+            <option value="cancelled">Đã hủy</option>
+
+          </select>
+
+        </div>
+
+        <!-- ĐANG TẢI -->
+        <div id="orders-loading" class="orders-message" hidden>
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          Đang tải lịch sử đơn hàng...
+        </div>
+
+        <!-- THÔNG BÁO LỖI -->
+        <div id="orders-error" class="orders-message error-message" hidden>
+          Không thể tải đơn hàng. Vui lòng thử lại.
+        </div>
+
+        <!-- KHÔNG CÓ ĐƠN HÀNG -->
+        <div id="orders-empty" class="orders-empty" hidden>
+
+          <i class="fa-solid fa-receipt"></i>
+
+          <h3>Bạn chưa có đơn hàng nào</h3>
+
+          <p>Hãy khám phá thực đơn FOXTAIL và đặt món yêu thích nhé!</p>
+
+          <a href="/menu/" class="btn btn-primary">
+            Khám Phá Thực Đơn
+          </a>
+
+        </div>
+
+        <!-- DANH SÁCH ĐƠN HÀNG -->
+        <div id="orders-list" class="orders-list">
+
+          <!-- orders.js sẽ hiển thị dữ liệu tại đây -->
+
+        </div>
+
+        <!-- PHÂN TRANG -->
+        <div id="orders-pagination" class="orders-pagination" hidden>
+
+          <button id="btn-prev-page" class="btn btn-outline">
+            Trang trước
+          </button>
+
+          <span id="current-page">Trang 1</span>
+
+          <button id="btn-next-page" class="btn btn-outline">
+            Trang sau
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-bottom">
+        © 2026 FOXTAIL Vietnam. Bảo lưu mọi quyền.
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script src="/shared/shared.js"></script>
+  <script src="/orders/orders.js"></script>
+
+</body>
+</html>

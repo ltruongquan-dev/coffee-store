@@ -429,60 +429,170 @@ function copyToClipboard(text, fieldName) {
 /**
  * XÁC NHẬN ĐÃ THANH TOÁN ONLINE THÀNH CÔNG (STEP 3)
  */
-function confirmOnlinePayment() {
+async function confirmOnlinePayment() {
   const btn = document.getElementById('btn-confirm-payment');
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang xác thực giao dịch trực tuyến...';
+
+  // Kiểm tra đơn hàng hiện tại
+  if (!currentOrderData) {
+    showToast('Không tìm thấy thông tin đơn hàng!', 'error');
+    return;
   }
 
-  setTimeout(() => {
-    // Xóa giỏ hàng sau khi thanh toán online thành công
+  // Lấy Token đăng nhập
+  const token = localStorage.getItem('cf_token');
+
+  if (!token) {
+    showToast('Vui lòng đăng nhập lại!', 'error');
+    window.location.href = '/login/?redirect=/cart/';
+    return;
+  }
+
+  // Vô hiệu hóa nút để tránh gửi nhiều lần
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = 'Đang lưu đơn hàng...';
+  }
+
+  try {
+    // Chuẩn bị dữ liệu gửi lên Backend
+    const orderPayload = {
+      orderCode: currentOrderData.orderCode,
+
+      customer: {
+        name: currentOrderData.custName,
+        phone: currentOrderData.custPhone,
+        address: currentOrderData.custAddress
+      },
+
+      deliveryType: currentOrderData.deliveryType,
+
+      paymentMethod: currentPayMethod,
+
+      items: currentOrderData.items.map(item => ({
+        id: item.id || '',
+        productId: item.productId || item.id || '',
+        name: item.name,
+        image: item.image || '',
+        price: Number(item.price),
+        quantity: Number(item.quantity || 1),
+        size: item.size || '',
+        toppings: item.toppings || '',
+        note: item.note || ''
+      }))
+    };
+
+    // Gửi request POST tới Backend
+    const response = await fetch('/api/orders', {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+
+      body: JSON.stringify(orderPayload)
+    });
+
+    const result = await response.json();
+
+    // Kiểm tra kết quả từ Backend
+    if (!response.ok || !result.success) {
+      throw new Error(
+        result.message || 'Không thể tạo đơn hàng'
+      );
+    }
+
+    // Nhận dữ liệu đơn hàng đã lưu
+    const savedOrder = result.data;
+
+    currentOrderData.orderCode = savedOrder.orderCode;
+    currentOrderData.createdAt = new Date(savedOrder.createdAt);
+    currentOrderData.orderId = savedOrder._id;
+
+    // Chỉ xóa giỏ hàng sau khi lưu thành công
     localStorage.removeItem('cf_cart');
+
     if (typeof updateCartBadge === 'function') {
       updateCartBadge();
     }
 
-    // Chuyển sang Bước 3
+    // Chuyển sang bước 3
     document.getElementById('cart-step-2').style.display = 'none';
     document.getElementById('cart-step-3').style.display = 'block';
-    window.scrollTo({ top: 100, behavior: 'smooth' });
 
-    // Cập nhật Step Indicator
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth'
+    });
+
+    // Cập nhật thanh tiến trình
     document.getElementById('step-node-2').classList.remove('active');
     document.getElementById('step-node-2').classList.add('completed');
     document.getElementById('step-node-3').classList.add('active');
 
-    // Fill biên lai
-    if (currentOrderData) {
-      const orderIdEl = document.getElementById('receipt-order-id');
-      const timeEl = document.getElementById('receipt-order-time');
-      const nameEl = document.getElementById('receipt-cust-name');
-      const methodEl = document.getElementById('receipt-pay-method');
-      const totalEl = document.getElementById('receipt-total');
+    // Hiển thị biên lai
+    const orderIdEl = document.getElementById('receipt-order-id');
+    const timeEl = document.getElementById('receipt-order-time');
+    const nameEl = document.getElementById('receipt-cust-name');
+    const methodEl = document.getElementById('receipt-pay-method');
+    const totalEl = document.getElementById('receipt-total');
 
-      if (orderIdEl) orderIdEl.textContent = `#${currentOrderData.orderCode}`;
-      if (timeEl) {
-        const d = currentOrderData.createdAt || new Date();
-        timeEl.textContent = d.toLocaleDateString('vi-VN') + ' ' + d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
-      }
-      if (nameEl) nameEl.textContent = `${currentOrderData.custName} (${currentOrderData.custPhone})`;
-      if (methodEl) {
-        const methodNames = {
-          vietqr: 'Chuyển khoản VietQR 24/7',
-          momo: 'Ví điện tử MoMo',
-          zalopay: 'Ví điện tử ZaloPay',
-          card: 'Thẻ Ngân Hàng / Quốc Tế (Online Gateway)'
-        };
-        methodEl.textContent = methodNames[currentPayMethod] || 'Thanh toán trực tuyến';
-      }
-      if (totalEl) totalEl.textContent = formatVND(currentOrderData.total);
+    if (orderIdEl) {
+      orderIdEl.textContent = `#${savedOrder.orderCode}`;
     }
 
-    if (typeof showToast === 'function') {
-      showToast('Thanh toán trực tuyến thành công! Đơn hàng đã được tiếp nhận.', 'success', 4000);
+    if (timeEl) {
+      const d = new Date(savedOrder.createdAt);
+
+      timeEl.textContent =
+        d.toLocaleDateString('vi-VN') + ' ' +
+        d.toLocaleTimeString('vi-VN', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
     }
-  }, 1400);
+
+    if (nameEl) {
+      nameEl.textContent =
+        `${savedOrder.customer.name} (${savedOrder.customer.phone})`;
+    }
+
+    if (methodEl) {
+      const methodNames = {
+        vietqr: 'Chuyển khoản VietQR 24/7',
+        momo: 'Ví điện tử MoMo',
+        zalopay: 'Ví điện tử ZaloPay',
+        card: 'Thẻ Ngân hàng / Quốc tế'
+      };
+
+      methodEl.textContent =
+        methodNames[savedOrder.paymentMethod] || 'Thanh toán trực tuyến';
+    }
+
+    if (totalEl) {
+      totalEl.textContent = formatVND(savedOrder.totalAmount);
+    }
+
+    showToast(
+      'Đã tạo đơn hàng thành công! Thanh toán đang chờ xác nhận.',
+      'success',
+      5000
+    );
+
+  } catch (error) {
+    console.error('Lỗi tạo đơn hàng:', error);
+
+    showToast(
+      error.message || 'Không thể tạo đơn hàng!',
+      'error'
+    );
+
+    // Cho phép khách thử lại nếu lưu thất bại
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> Thử lại';
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

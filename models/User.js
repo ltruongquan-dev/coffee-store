@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'customer'
   },
+  loyaltyPoints: {
+    type: Number,
+    default: 0,
+    min: 0
+},
   avatar: {
     type: String,
     default: ''
