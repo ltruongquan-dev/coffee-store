@@ -234,20 +234,52 @@ if (existingOrder) {
       totalAmount,
 
       paymentMethod,
-      paymentStatus: 'pending',
+      paymentStatus: 'paid',
 
-      status: 'pending',
-      orderStatus: 'pending',
+// Tự động hoàn thành đơn hàng
+      status: 'completed',
+      orderStatus: 'completed',
+      completedAt: new Date(),
 
       statusHistory: [{
-        status: 'pending',
-        note: 'Khách hàng vừa tạo đơn hàng',
+        status: 'completed',
+        note: 'Đơn hàng đã giao thành công',
         changedAt: new Date()
       }],
 
-      pointsEarned: 0,
-      pointsAwarded: false
+       pointsEarned: 0,
+       pointsAwarded: false
     });
+
+    // ========================================
+// TỰ ĐỘNG CỘNG 5 ĐIỂM KHI ĐƠN HOÀN THÀNH
+// ========================================
+
+if (
+  order.orderStatus === 'completed' &&
+  !order.pointsAwarded
+) {
+  // Cộng đúng 5 điểm vào tài khoản khách hàng
+  const updatedUser = await User.findByIdAndUpdate(
+    order.userId,
+    {
+      $inc: {
+        loyaltyPoints: 5
+      }
+    },
+    { new: true }
+  );
+
+  if (!updatedUser) {
+    throw new Error('Không tìm thấy tài khoản để cộng điểm');
+  }
+
+  // Đánh dấu đơn hàng đã được cộng điểm
+  order.pointsEarned = 5;
+  order.pointsAwarded = true;
+
+  await order.save({ validateBeforeSave: false });
+}
 
     return res.status(201).json({
       success: true,
@@ -515,10 +547,7 @@ if (
   order.userId
 ) {
 
-  // 10.000đ tiền hàng = 1 điểm
-  const pointsToAward = Math.floor(
-    Number(order.subtotal || 0) / 10000
-  );
+  const pointsToAward = 5;
 
   // Đánh dấu đơn đã được xử lý điểm một cách nguyên tử,
   // tránh cộng điểm hai lần khi có request đồng thời.

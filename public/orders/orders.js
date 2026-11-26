@@ -12,10 +12,9 @@ const STATUS_LABELS = {
   confirmed: 'Đã xác nhận',
   preparing: 'Đang chuẩn bị',
   delivering: 'Đang giao hàng',
-  completed: 'Đã hoàn thành',
+  completed: 'Giao hàng thành công',
   cancelled: 'Đã hủy'
 };
-
 // Trạng thái thanh toán
 const PAYMENT_LABELS = {
   pending: 'Chờ thanh toán',
